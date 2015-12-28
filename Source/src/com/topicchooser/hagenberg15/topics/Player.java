@@ -3,9 +3,13 @@ package com.topicchooser.hagenberg15.topics;
 public class Player
 {
 
-	public Player()
+	public char Gender;
+	public int Age;
+	
+	public Player(char gender, int age)
 	{
-		// TODO Auto-generated constructor stub
+		this.Gender = gender;
+		this.Age = age;
 	}
 
 }

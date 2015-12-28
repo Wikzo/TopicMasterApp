@@ -20,7 +20,7 @@ public class TopicManager
 		_players = new ArrayList<>(numberOfPlayers);
 		
 		for (int i = 0; i < numberOfPlayers; i++)
-			_players.add(new Player());
+			_players.add(new Player('M', 21));
 	}
 
 	public String DisplayTopic()

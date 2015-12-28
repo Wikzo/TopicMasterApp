@@ -203,20 +203,21 @@ bg=white</panel_attributes>
       <x>490</x>
       <y>630</y>
       <w>240</w>
-      <h>190</h>
+      <h>200</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Static&gt;&gt;
 TopicManager
 --
 List&lt;Player&gt; Players
 List&lt;Topic&gt; Topics
+Topic CurrentTopic
 --
 String DisplayTopic()
-void GetVotes();
+void AddVote(int vote);
 void CalculateNextTopic()
-void MoveOneLevelDown()
-void MoveOneLevelUp()
-void MoveSideways()
+void MoveHorizontal(int direction)
+void MoveVertical(int direction)
+int GetPlayerCount()
 bg=white</panel_attributes>
     <additional_attributes/>
   </element>
@@ -458,5 +459,28 @@ Have multiple lists or multiple iterators?
 
 bg=white</panel_attributes>
     <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>20</x>
+      <y>290</y>
+      <w>110</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>ExitCommand
+bg=white</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>0</x>
+      <y>140</y>
+      <w>320</w>
+      <h>170</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>300.0;10.0;300.0;40.0;10.0;40.0;10.0;130.0;80.0;130.0;80.0;150.0</additional_attributes>
   </element>
 </diagram>

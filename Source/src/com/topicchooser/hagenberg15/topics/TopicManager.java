@@ -2,6 +2,7 @@ package com.topicchooser.hagenberg15.topics;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.PrimitiveIterator.OfDouble;
 
 import com.topicchooser.hagenberg15.commands.ICommand;
 import com.topicchooser.hagenberg15.commands.InputHandler;
@@ -24,12 +25,8 @@ public class TopicManager
 	public TopicManager(int numberOfPlayers)
 	{
 		_topics = new ArrayList<>();
-		_players = new ArrayList<>(numberOfPlayers);
 		_state = new SetupState();
 		_state.EnterState(this);
-
-		for (int i = 0; i < numberOfPlayers; i++)
-			_players.add(new Player('M', 21));
 	}
 
 	public void Update()
@@ -90,6 +87,38 @@ public class TopicManager
 			System.out.println("\n[Moving one level up...]\n");
 	}
 
+	
+	public void SetupPlayers()
+	{
+		System.out.println("How many players are you?");
+		int number = InputHandler.GetPositiveNumber();
+		
+		while (number <= 1)
+		{
+			System.out.println("You need at least two players for this. You don't want just to talk to yourself, right?");
+			System.out.println("How many players are you?");
+			number = InputHandler.GetPositiveNumber();
+		}
+			
+		System.out.println("OK, so you are " + number + " players.");
+		
+		
+		_players = new ArrayList<>(number);
+		
+		for (int i = 0; i < number; i++)
+		{
+			Player p = new Player(i+1);
+			p.InitializePlayer();
+			_players.add(p);
+			
+		}
+		
+		for (Player p : _players)
+			System.out.println(p.toString());
+		
+		
+	}
+	
 	public int GetPlayerCount()
 	{
 		return _players.size();

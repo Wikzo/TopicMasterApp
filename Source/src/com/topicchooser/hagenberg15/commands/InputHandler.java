@@ -23,7 +23,7 @@ public class InputHandler
 
 		// TODO: some of these commands will not be exposed to the players
 		// here, they are just temporary debug test stuff
-		
+
 		if (input.equals("vote"))
 			command = new GetVotesCommand();
 		else if (input.equals("moveup"))
@@ -39,18 +39,78 @@ public class InputHandler
 
 		_previousCommand = command;
 
+
 		return command;
 	}
-	
+
 	public static boolean GetYesOrNo()
 	{
 		Scanner keyboard = new Scanner(System.in);
 		String input = keyboard.nextLine().toLowerCase();
-		
+
+
 		if (input.equals("y"))
 			return true;
 		else
 			return false;
+	}
+
+	public static int GetPositiveNumber()
+	{
+		Scanner sc = new Scanner(System.in);
+		int number;
+		do
+		{
+			//System.out.println("Please enter a number:");
+			while (!sc.hasNextInt())
+			{
+				System.out.println("That's not a number. Please enter again:");
+				sc.next();
+			}
+			number = sc.nextInt();
+		} while (number <= 0);
+
+		return number;
+	}
+
+	public static String GetNextString()
+	{
+		Scanner sc = new Scanner(System.in);
+		return sc.nextLine();
+	}
+	
+	public static char GetGenderChar()
+	{
+		Scanner sc = new Scanner(System.in);
+
+		boolean correct = false;
+		char gender = '-';
+
+		while (!correct)
+		{
+			System.out.println("male / female / other:");
+			String input = sc.nextLine().toLowerCase();
+
+			if (input.equals("male") || input.equals("m"))
+			{
+				correct = true;
+				gender= 'M';
+			}
+
+			else if (input.equals("female") || input.equals("f"))
+			{
+				correct = true;
+				gender= 'F';
+			}
+			
+			else if (input.equals("other") || input.equals("o"))
+			{
+				correct = true;
+				gender= 'O';
+			}
+		}
+		
+		return gender;
 	}
 
 }

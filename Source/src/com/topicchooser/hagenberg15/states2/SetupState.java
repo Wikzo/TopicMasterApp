@@ -10,7 +10,7 @@ public class SetupState implements IState
 
 	public SetupState()
 	{
-		
+
 	}
 
 	@Override
@@ -20,37 +20,36 @@ public class SetupState implements IState
 		{
 			input.Execute(topicManager);
 			return new VotingState();
-		
+
 		}
-		
+
 		if (input instanceof ExitCommand)
 		{
 			input.Execute(topicManager);
 			return new QuitState();
 		}
-		
+
 		return this;
 	}
 
 	@Override
 	public void Update(TopicManager topicManager)
 	{
-		
-		
+
 	}
 
 	@Override
 	public void EnterState(TopicManager topicManager)
 	{
-		System.out.println("Hello and welcome to TOPIC CHOOSER. Before we begin, we need some basic information about you...");
-		
+		System.out.println(
+				"Hello and welcome to TOPIC CHOOSER. Before we begin, we need some basic information about you...");
+		topicManager.SetupPlayers();
 	}
 
 	@Override
 	public void ExitState(TopicManager topicManager)
 	{
-		
-		
+
 	}
 
 }

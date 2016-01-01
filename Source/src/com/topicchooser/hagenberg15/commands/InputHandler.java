@@ -13,7 +13,7 @@ public class InputHandler
 	private static ICommand _previousCommand = null;
 
 	public static ICommand HandleInput(TopicManager topicManager)
-	{
+	{		
 		System.out.println(_possibleCommands);
 
 		Scanner keyboard = new Scanner(System.in);
@@ -39,7 +39,6 @@ public class InputHandler
 
 		_previousCommand = command;
 
-
 		return command;
 	}
 
@@ -47,7 +46,6 @@ public class InputHandler
 	{
 		Scanner keyboard = new Scanner(System.in);
 		String input = keyboard.nextLine().toLowerCase();
-
 
 		if (input.equals("y"))
 			return true;
@@ -61,7 +59,7 @@ public class InputHandler
 		int number;
 		do
 		{
-			//System.out.println("Please enter a number:");
+			System.out.println("Please enter a number:");
 			while (!sc.hasNextInt())
 			{
 				System.out.println("That's not a number. Please enter again:");
@@ -78,7 +76,7 @@ public class InputHandler
 		Scanner sc = new Scanner(System.in);
 		return sc.nextLine();
 	}
-	
+
 	public static char GetGenderChar()
 	{
 		Scanner sc = new Scanner(System.in);
@@ -88,29 +86,42 @@ public class InputHandler
 
 		while (!correct)
 		{
-			System.out.println("male / female / other:");
+			System.out.println("Male / Female / Other:");
 			String input = sc.nextLine().toLowerCase();
 
 			if (input.equals("male") || input.equals("m"))
 			{
 				correct = true;
-				gender= 'M';
+				gender = 'M';
 			}
 
 			else if (input.equals("female") || input.equals("f"))
 			{
 				correct = true;
-				gender= 'F';
+				gender = 'F';
 			}
-			
+
 			else if (input.equals("other") || input.equals("o"))
 			{
 				correct = true;
-				gender= 'O';
+				gender = 'O';
 			}
 		}
-		
+
 		return gender;
+	}
+
+	public static void ClearConsole()
+	{
+		// Eclipse console
+		/*for (int i = 0; i < 200; ++i)
+			System.out.println();*/
+		
+		// Windows cmd
+		/*final String ANSI_CLS = "\u001b[2J";
+        final String ANSI_HOME = "\u001b[H";
+        System.out.print(ANSI_CLS + ANSI_HOME);
+        System.out.flush();*/
 	}
 
 }

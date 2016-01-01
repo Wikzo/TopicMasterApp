@@ -43,7 +43,7 @@ public class SetupState implements IState
 	{
 		System.out.println(
 				"Hello and welcome to TOPIC CHOOSER. Before we begin, we need some basic information about you...");
-		topicManager.SetupPlayers();
+		topicManager.PlayerManager.SetupPlayers();
 	}
 
 	@Override

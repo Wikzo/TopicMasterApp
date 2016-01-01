@@ -14,11 +14,11 @@ public class GetVotesCommand implements ICommand
 	}
 
 	@Override
-	public void Execute(TopicManager t)
+	public void Execute(TopicManager topicManager)
 	{		
 		System.out.println("Voting...");
 		
-		for (int i = 0; i < t.GetPlayerCount(); i++)
+		for (int i = 0; i < topicManager.PlayerManager.GetPlayerCount(); i++)
 		{
 			String s = String.format("Player %s: please vote:", i+1);
 			System.out.println(s);
@@ -26,7 +26,7 @@ public class GetVotesCommand implements ICommand
 			Scanner keyboard = new Scanner(System.in);
 			int vote = 	keyboard.nextInt();
 			
-			t.AddVote(vote);
+			topicManager.AddVote(vote);
 			_previousVote = vote;
 		}
 	}

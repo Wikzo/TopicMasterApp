@@ -1,7 +1,8 @@
-package com.topicchooser.hagenberg15;
+package com.topicchooser.hagenberg15.main;
 
 import com.topicchooser.hagenberg15.commands.ICommand;
 import com.topicchooser.hagenberg15.commands.InputHandler;
+import com.topicchooser.hagenberg15.players.PlayerManager;
 import com.topicchooser.hagenberg15.topics.TopicManager;
 
 public class Main
@@ -11,7 +12,8 @@ public class Main
 
 	public static void main(String[] args)
 	{
-		TopicManager topicManager = new TopicManager(2);
+		PlayerManager playerManager = new PlayerManager();
+		TopicManager topicManager = new TopicManager(playerManager);
 		ICommand command = null;
 		
 		boolean exit = false;

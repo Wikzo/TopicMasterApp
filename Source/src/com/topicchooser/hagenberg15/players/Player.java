@@ -1,4 +1,4 @@
-package com.topicchooser.hagenberg15.topics;
+package com.topicchooser.hagenberg15.players;
 
 import com.topicchooser.hagenberg15.commands.InputHandler;
 

@@ -6,6 +6,8 @@ import java.util.PrimitiveIterator.OfDouble;
 
 import com.topicchooser.hagenberg15.commands.ICommand;
 import com.topicchooser.hagenberg15.commands.InputHandler;
+import com.topicchooser.hagenberg15.players.Player;
+import com.topicchooser.hagenberg15.players.PlayerManager;
 import com.topicchooser.hagenberg15.states2.IState;
 import com.topicchooser.hagenberg15.states2.SetupState;
 import com.topicchooser.hagenberg15.states2.VotingState;
@@ -19,11 +21,12 @@ public class TopicManager
 	private Topic _currentTopic;
 
 	private List<Topic> _topics;
-	private List<Player> _players;
+	public PlayerManager PlayerManager;
 	private IState _state;
 
-	public TopicManager(int numberOfPlayers)
+	public TopicManager(PlayerManager playerManager)
 	{
+		this.PlayerManager = playerManager;
 		_topics = new ArrayList<>();
 		_state = new SetupState();
 		_state.EnterState(this);
@@ -61,14 +64,14 @@ public class TopicManager
 		VotesCountedSoFar += (int) Math.signum(vote);
 		_voteScores += vote;
 
-		if (VotesCountedSoFar >= GetPlayerCount())
+		if (VotesCountedSoFar >= PlayerManager.GetPlayerCount())
 			CalculateNextTopic();
 	}
 
 	private void CalculateNextTopic()
 	{
 		System.out.println("\n[Calculating next topic...]\n");
-		float avg = _voteScores / GetPlayerCount();
+		float avg = _voteScores / PlayerManager.GetPlayerCount();
 	}
 
 	public void MoveHorizontal(int direction)
@@ -87,42 +90,6 @@ public class TopicManager
 			System.out.println("\n[Moving one level up...]\n");
 	}
 
-	
-	public void SetupPlayers()
-	{
-		System.out.println("How many players are you?");
-		int number = InputHandler.GetPositiveNumber();
-		
-		while (number <= 1)
-		{
-			System.out.println("You need at least two players for this. You don't want just to talk to yourself, right?");
-			System.out.println("How many players are you?");
-			number = InputHandler.GetPositiveNumber();
-		}
-			
-		System.out.println("OK, so you are " + number + " players.");
-		
-		
-		_players = new ArrayList<>(number);
-		
-		for (int i = 0; i < number; i++)
-		{
-			Player p = new Player(i+1);
-			p.InitializePlayer();
-			_players.add(p);
-			
-		}
-		
-		for (Player p : _players)
-			System.out.println(p.toString());
-		
-		
-	}
-	
-	public int GetPlayerCount()
-	{
-		return _players.size();
-	}
 
 	public void Exit()
 	{

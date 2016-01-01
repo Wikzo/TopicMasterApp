@@ -2,6 +2,7 @@ package com.topicchooser.hagenberg15.topics;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.PrimitiveIterator.OfDouble;
 
 import com.topicchooser.hagenberg15.commands.ICommand;
@@ -10,25 +11,38 @@ import com.topicchooser.hagenberg15.players.Player;
 import com.topicchooser.hagenberg15.players.PlayerManager;
 import com.topicchooser.hagenberg15.states2.IState;
 import com.topicchooser.hagenberg15.states2.SetupState;
+import com.topicchooser.hagenberg15.states2.ShowTopicState;
 import com.topicchooser.hagenberg15.states2.VotingState;
 
 public class TopicManager
 {
-	public int VotesCountedSoFar = 0;
-
-	private int _voteScores = 0;
-
-	private Topic _currentTopic;
-
-	private List<Topic> _topics;
 	public PlayerManager PlayerManager;
-	private IState _state;
+	public Vote CurrentVotes;
+	public Topic CurrentTopic;
+	
+
+	
+	private List<Topic> _topicPool;
+	private IState _state;	
 
 	public TopicManager(PlayerManager playerManager)
 	{
 		this.PlayerManager = playerManager;
-		_topics = new ArrayList<>();
+		CurrentVotes = new Vote();
+		
+		CurrentTopic = new Topic("Cats");
+
+		_topicPool = new ArrayList<>();
+		
+		for (int i = 0; i < 5; i++)
+		{
+			_topicPool.add(new Topic("Topic " + Integer.toString(i)));
+		}
+		
 		_state = new SetupState();
+		_state.EnterState(this);
+		
+		_state = new ShowTopicState();
 		_state.EnterState(this);
 	}
 
@@ -37,11 +51,11 @@ public class TopicManager
 		if (_state != null)
 		{
 			_state.Update(this);
-			System.out.println("Current state: " + _state.getClass().getSimpleName());
+			System.out.println("\n***Current state: " + _state.getClass().getSimpleName() + "(debug)**");
 		}
 	}
 
-	public void HandleInput(ICommand command)
+	public void HandleInputAndState(ICommand command)
 	{
 		IState temp = _state.HandleInput(command, this);
 
@@ -54,43 +68,25 @@ public class TopicManager
 		}
 	}
 
-	public String DisplayTopic()
+	public String DisplayCurrentTopic()
 	{
-		return _currentTopic.TopicText;
+		return CurrentTopic.TopicText;
 	}
 
-	public void AddVote(int vote)
+	public String DisplayCurrentVotes()
 	{
-		VotesCountedSoFar += (int) Math.signum(vote);
-		_voteScores += vote;
-
-		if (VotesCountedSoFar >= PlayerManager.GetPlayerCount())
-			CalculateNextTopic();
+		return CurrentVotes.toString();
 	}
 
-	private void CalculateNextTopic()
+	public void CalculateNextTopic()
 	{
-		System.out.println("\n[Calculating next topic...]\n");
-		float avg = _voteScores / PlayerManager.GetPlayerCount();
+		Random random = new Random();
+		
+		int next = 0;
+		next = random.nextInt(_topicPool.size());
+		CurrentTopic = _topicPool.get(next);
 	}
-
-	public void MoveHorizontal(int direction)
-	{
-		if (direction > 0)
-			System.out.println("\n[Moving to the right...]\n");
-		else if (direction < 0)
-			System.out.println("\n[Moving to the left...]\n");
-	}
-
-	public void MoveVertical(int direction)
-	{
-		if (direction > 0)
-			System.out.println("\n[Moving one level down...]\n");
-		else if (direction < 0)
-			System.out.println("\n[Moving one level up...]\n");
-	}
-
-
+	
 	public void Exit()
 	{
 		System.out.println("Are you really sure you want to exit?\nY / N");
@@ -99,9 +95,9 @@ public class TopicManager
 
 		if (exit)
 		{
-
-			//System.out.println("[Displaying statistical information about this round]");
-			System.out.println("Shutting down. Good bye...");
+			// System.out.println("[Displaying statistical information about
+			// this round]");
+			System.out.println("Shutting down. Good-bye...");
 			System.exit(0);
 		}
 	}

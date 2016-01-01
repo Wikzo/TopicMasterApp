@@ -1,40 +1,42 @@
 package com.topicchooser.hagenberg15.states2;
 
-import javax.jws.soap.SOAPBinding.Use;
-
 import com.topicchooser.hagenberg15.commands.ExitCommand;
+import com.topicchooser.hagenberg15.commands.VoteCommand;
 import com.topicchooser.hagenberg15.commands.ICommand;
 import com.topicchooser.hagenberg15.commands.InputHandler;
 import com.topicchooser.hagenberg15.commands.NextCommand;
 import com.topicchooser.hagenberg15.topics.TopicManager;
 
-public class VotingState implements IState
+public class ShowTopicState implements IState
 {
+	
+	private final String[] _commands = {InputHandler.VoteCommandString, InputHandler.ExitCommandString};
 
-	private final String[] _commands = {InputHandler.NextCommandString, InputHandler.ExitCommandString};
+	public ShowTopicState()
+	{
+	}
 
 	@Override
 	public IState HandleInput(ICommand input, TopicManager topicManager)
 	{
+
 		if (input instanceof ExitCommand)
 			input.Execute(topicManager);
 		
-		if (input instanceof NextCommand)
+		
+		if (input instanceof VoteCommand) // and when time has passed...
 		{
 			input.Execute(topicManager);
-			return new ShowTopicState();
+			return new VotingState();
 		}
-		
+
 		return this;
 	}
 
 	@Override
 	public void Update(TopicManager topicManager)
 	{
-		System.out.println("Voting has ended. Here are the results:\n");
-		System.out.println(topicManager.DisplayCurrentVotes());
-		
-		System.out.println("\nUse the [next] command to get a new topic!\n");
+		System.out.println("CURRENT TOPIC: " + topicManager.DisplayCurrentTopic() + "\n");
 		
 		InputHandler.DisplayPossibleCommands(_commands);
 	}
@@ -42,17 +44,13 @@ public class VotingState implements IState
 	@Override
 	public void EnterState(TopicManager topicManager)
 	{
-		//System.out.println("Entering VOTING state");
-		
 		InputHandler.ClearConsole();
-		
 	}
 
 	@Override
 	public void ExitState(TopicManager topicManager)
 	{
-		//System.out.println("Exiting VOTING state");
-		
+		//System.out.println("Exiting SHOW TOPIC state");
 	}
 
 }

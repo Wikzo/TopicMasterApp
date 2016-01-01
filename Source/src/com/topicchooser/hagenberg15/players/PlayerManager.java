@@ -7,8 +7,7 @@ import com.topicchooser.hagenberg15.commands.InputHandler;
 
 public class PlayerManager
 {
-	
-	private static List<Player> _players;
+	public static List<Player> Players;
 
 	public String SetupPlayers()
 	{
@@ -19,7 +18,7 @@ public class PlayerManager
 			
 		System.out.println("OK, so you are " + number + " players.");
 		
-		_players = new ArrayList<>(number);
+		Players = new ArrayList<>(number);
 		AddPlayers(number);
 		
 		String playerInfo = DisplayCurrentPlayers();
@@ -33,7 +32,7 @@ public class PlayerManager
 		
 		s.append("\n----------\nThese are the players:\n");
 		
-		for (Player p : _players)
+		for (Player p : Players)
 			s.append(p.toString() + "\n");
 		
 		s.append("----------");
@@ -47,7 +46,8 @@ public class PlayerManager
 		{
 			Player p = new Player(i+1);
 			p.InitializePlayer();
-			_players.add(p);
+			//p.InitializePlayerPredefined(); // <-- for quicker debugging purpose
+			Players.add(p);
 		}
 	}
 
@@ -64,6 +64,6 @@ public class PlayerManager
 	
 	public static int GetPlayerCount()
 	{
-		return _players.size();
+		return Players.size();
 	}
 }

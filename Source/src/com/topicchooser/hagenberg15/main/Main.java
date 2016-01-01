@@ -24,9 +24,11 @@ public class Main
 			
 			command = InputHandler.HandleInput(topicManager);
 			if (command != null)	
-				topicManager.HandleInput(command);
+				topicManager.HandleInputAndState(command);
 		}
 
 	}
+	
+	
 
 }

@@ -17,14 +17,21 @@ public class Player
 	
 	public void InitializePlayer()
 	{
-		System.out.println("Please tell me the name of player " + PlayerID + ":");
+		System.out.println("\nPlease tell me the name of player " + PlayerID + ":");
 		Name = InputHandler.GetNextString();
 		
-		System.out.println(Name + ", how old are you?");
+		System.out.println("\nHowdy, " + Name + ". Please tell me your age:");
 		Age = InputHandler.GetPositiveNumber();
 		
-		System.out.println(Name + ", and what is your gender?");
+		System.out.println("\nOh, and " + Name + ", would you mind telling me your gender as well:");
 		Gender = InputHandler.GetGenderChar();
+	}
+	
+	public void InitializePlayerPredefined()
+	{
+		Name = "TestName_" + PlayerID;
+		Age = PlayerID;
+		Gender = 'M';
 	}
 	
 	@Override

@@ -19,7 +19,6 @@ public class Main
 		boolean exit = false;
 		while (!exit)
 		{
-			
 			topicManager.Update();
 			
 			command = InputHandler.HandleInput(topicManager);
@@ -28,7 +27,5 @@ public class Main
 		}
 
 	}
-	
-	
 
 }

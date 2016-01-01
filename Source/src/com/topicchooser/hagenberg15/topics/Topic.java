@@ -5,9 +5,9 @@ import java.util.List;
 
 public class Topic
 {
-	
+
 	public String TopicText = "Topic Text Test";
-	
+
 	protected int _moreLikeThis;
 	protected int _somethingDifferent;
 	protected int _keyWordSearch;
@@ -15,7 +15,7 @@ public class Topic
 	protected Topic _root;
 	protected Topic _child;
 	protected Topic _sibling;
-	
+
 	public Topic(String topicText)
 	{
 		this.TopicText = topicText;

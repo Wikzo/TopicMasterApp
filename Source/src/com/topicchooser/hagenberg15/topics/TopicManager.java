@@ -19,29 +19,27 @@ public class TopicManager
 	public PlayerManager PlayerManager;
 	public Vote CurrentVotes;
 	public Topic CurrentTopic;
-	
 
-	
 	private List<Topic> _topicPool;
-	private IState _state;	
+	private IState _state;
 
 	public TopicManager(PlayerManager playerManager)
 	{
 		this.PlayerManager = playerManager;
 		CurrentVotes = new Vote();
-		
+
 		CurrentTopic = new Topic("Cats");
 
 		_topicPool = new ArrayList<>();
-		
+
 		for (int i = 0; i < 5; i++)
 		{
 			_topicPool.add(new Topic("Topic " + Integer.toString(i)));
 		}
-		
+
 		_state = new SetupState();
 		_state.EnterState(this);
-		
+
 		_state = new ShowTopicState();
 		_state.EnterState(this);
 	}
@@ -81,12 +79,12 @@ public class TopicManager
 	public void CalculateNextTopic()
 	{
 		Random random = new Random();
-		
+
 		int next = 0;
 		next = random.nextInt(_topicPool.size());
 		CurrentTopic = _topicPool.get(next);
 	}
-	
+
 	public void Exit()
 	{
 		System.out.println("Are you really sure you want to exit?\nY / N");

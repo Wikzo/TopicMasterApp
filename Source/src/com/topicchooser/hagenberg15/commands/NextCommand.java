@@ -13,13 +13,13 @@ public class NextCommand implements ICommand
 	{
 		_previousTopic = topicManager.CurrentTopic;
 		topicManager.CalculateNextTopic();
-		
+
 	}
 
 	@Override
 	public void Undo(TopicManager topicManager)
 	{
-		 topicManager.CurrentTopic = _previousTopic;
+		topicManager.CurrentTopic = _previousTopic;
 	}
 
 }

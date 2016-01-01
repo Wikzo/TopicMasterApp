@@ -12,12 +12,12 @@ public class InputHandler
 
 	// TODO: only show POSSIBLE commands (depending on the current state)
 	private final static String _possibleCommands = "\nCommands:\n[vote], [next], [undo], [exit]\n";
-	
+
 	public final static String VoteCommandString = "[vote]";
 	public final static String NextCommandString = "[next]";
 	public final static String UndoCommandString = "[undo]";
 	public final static String ExitCommandString = "[exit]";
-	
+
 	public static String DisplayPossibleCommands(String[] strings)
 	{
 		StringBuffer s = new StringBuffer();
@@ -25,22 +25,22 @@ public class InputHandler
 		for (int i = 0; i < strings.length; i++)
 		{
 			s.append(strings[i]);
-			
-			if (i+1 < strings.length)
+
+			if (i + 1 < strings.length)
 				s.append(", ");
 		}
 		s.append("\n");
-		
+
 		System.out.println(s.toString());
-		
+
 		return s.toString();
 	}
-	
+
 	private static ICommand _previousCommand = null;
 
 	public static ICommand HandleInput(TopicManager topicManager)
-	{		
-		//System.out.println(_possibleCommands);
+	{
+		// System.out.println(_possibleCommands);
 
 		Scanner keyboard = new Scanner(System.in);
 		String input = keyboard.nextLine().toLowerCase();
@@ -59,7 +59,7 @@ public class InputHandler
 			System.out.println("ERROR: invalid input command. Please try again!\n\n");
 
 		_previousCommand = command;
-		
+
 		System.out.println();
 
 		return command;
@@ -139,9 +139,9 @@ public class InputHandler
 		// https://stackoverflow.com/questions/2979383/java-clear-the-console#17015039
 		// this will show some strange symbols in Eclipse's built-in console
 		// but it works with cmd in Windows
-		
-		System.out.print("\033[H\033[2J");  
-	    System.out.flush();  
+
+		System.out.print("\033[H\033[2J");
+		System.out.flush();
 	}
 
 }

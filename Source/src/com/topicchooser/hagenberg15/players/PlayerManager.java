@@ -36,7 +36,7 @@ public class PlayerManager
 			s.append(p.toString() + "\n");
 		
 		s.append("----------");
-		
+
 		return s.toString();
 	}
 

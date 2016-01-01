@@ -7,7 +7,7 @@ public class ExitCommand implements ICommand
 
 	public ExitCommand()
 	{
-		
+
 	}
 
 	@Override
@@ -19,8 +19,7 @@ public class ExitCommand implements ICommand
 	@Override
 	public void Undo(TopicManager topicManager)
 	{
-		
-		
+
 	}
 
 }

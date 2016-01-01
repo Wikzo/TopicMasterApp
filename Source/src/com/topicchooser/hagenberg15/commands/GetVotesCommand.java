@@ -16,6 +16,8 @@ public class GetVotesCommand implements ICommand
 	@Override
 	public void Execute(TopicManager t)
 	{		
+		System.out.println("Voting...");
+		
 		for (int i = 0; i < t.GetPlayerCount(); i++)
 		{
 			String s = String.format("Player %s: please vote:", i+1);

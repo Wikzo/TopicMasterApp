@@ -11,14 +11,13 @@ public class ExitCommand implements ICommand
 	}
 
 	@Override
-	public void Execute(TopicManager t)
+	public void Execute(TopicManager topicManager)
 	{
-		
-		System.out.println("\n[Exit]\n");
+		topicManager.Exit();
 	}
 
 	@Override
-	public void Undo(TopicManager t)
+	public void Undo(TopicManager topicManager)
 	{
 		
 		

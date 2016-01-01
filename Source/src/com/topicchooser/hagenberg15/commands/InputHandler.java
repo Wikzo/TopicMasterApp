@@ -9,10 +9,10 @@ import com.topicchooser.hagenberg15.topics.TopicManager;
 public class InputHandler
 {
 
-	private final static String _possibleCommands = "*List of the possible commands:*\nvote, moveup, movedown, undo, exit\n";
+	private final static String _possibleCommands = "\nCommands:\n[vote], [moveup], [movedown], [undo], [exit]\n";
 	private static ICommand _previousCommand = null;
 
-	public static ICommand HandleInput(TopicManager t)
+	public static ICommand HandleInput(TopicManager topicManager)
 	{
 		System.out.println(_possibleCommands);
 
@@ -31,7 +31,7 @@ public class InputHandler
 		else if (input.equals("movedown"))
 			command = new MoveDownCommand();
 		else if (input.equals("undo") && _previousCommand != null)
-			_previousCommand.Undo(t);
+			_previousCommand.Undo(topicManager);
 		else if (input.equals("exit"))
 			command = new ExitCommand();
 		else
@@ -40,6 +40,17 @@ public class InputHandler
 		_previousCommand = command;
 
 		return command;
+	}
+	
+	public static boolean GetYesOrNo()
+	{
+		Scanner keyboard = new Scanner(System.in);
+		String input = keyboard.nextLine().toLowerCase();
+		
+		if (input.equals("y"))
+			return true;
+		else
+			return false;
 	}
 
 }

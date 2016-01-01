@@ -17,10 +17,12 @@ public class Main
 		boolean exit = false;
 		while (!exit)
 		{
-			command = InputHandler.HandleInput(topicManager);
 			
-			if (command != null)
-				command.Execute(topicManager);			
+			topicManager.Update();
+			
+			command = InputHandler.HandleInput(topicManager);
+			if (command != null)	
+				topicManager.HandleInput(command);
 		}
 
 	}

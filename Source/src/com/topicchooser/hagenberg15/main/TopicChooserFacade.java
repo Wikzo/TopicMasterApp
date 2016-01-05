@@ -23,31 +23,39 @@ public class TopicChooserFacade
 	public TopicChooserFacade(String[] storedInputs)
 	{
 		boolean useStoredInputsAndDummyData = (storedInputs == null) ? false : true;
-		
+
 		if (useStoredInputsAndDummyData)
 		{
 			_useStoredInput = true;
 			_storedInput = storedInputs;
 			InputHandler.SetStoredInputs(_storedInput);
 		}
-		
+
 		PlayerManager = new PlayerManager();
 		TopicManager = new TopicManager(PlayerManager, _useStoredInput);
 		Command = null;
 	}
 
-
 	public void Run() throws IOException
-	{		
+	{
 		boolean exit = false;
 		while (!exit)
 		{
-			TopicManager.Update();
-
-			Command = InputHandler.HandleInput(TopicManager);
-			if (Command != null)
-				TopicManager.HandleInputAndState(Command);
+			System.out.println(UpdateNextStep());
 		}
+	}
+
+	public String UpdateNextStep() throws IOException
+	{
+		String result = "";
+		
+		result += TopicManager.Update();
+
+		Command = InputHandler.HandleInput(TopicManager);
+		if (Command != null)
+			result += TopicManager.HandleInputAndState(Command);
+		
+		return result;
 	}
 
 }

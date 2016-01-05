@@ -25,11 +25,12 @@ public class TopicTester
 		String line2 = "1\n1";
 		String line3 = "2\n";
 		String line4 = "2\n";
-		String line5 = "exit\n";
-		String line6 = "y\n";
+		String line5 = "next\n";
+		String line6 = "exit\n";
+		String line7 = "y\n";
 
 		String[] lines =
-		{ line1, line2, line3, line4, line5, line6 };
+		{ line1, line2, line3, line4, line5, line6, line7 };
 
 		return lines;
 	}
@@ -38,8 +39,6 @@ public class TopicTester
 	public void Setup() throws IOException
 	{
 		facade = new TopicChooserFacade(StoredInput());
-
-		// facade.Run();
 	}
 
 	@Test
@@ -55,6 +54,25 @@ public class TopicTester
 		expected += "----------";
 
 		Assert.assertEquals(expected, facade.PlayerManager.DisplayCurrentPlayers());
+	}
+	
+	@Test
+	public void UpdateWithStoredInputs() throws IOException
+	{
+		String expected = "";
+		String results = "";
+		
+		// voting on topics
+		expected = "Voting has now ended. Here are the results:\n";
+		expected += "More like this: 1\n";
+		expected += "Something different: 2\n";
+		expected += "Keyword search: 0";
+		results = facade.UpdateNextStep();
+		Assert.assertEquals(expected, results);
+		
+		// getting next topic
+		results = facade.UpdateNextStep();
+		results = facade.UpdateNextStep();
 	}
 
 }

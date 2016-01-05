@@ -13,7 +13,7 @@ import com.topicchooser.hagenberg15.topics.TopicManager;
 
 public class Main
 {
-	private final static boolean _useStoredInput = false;
+	private final static boolean _useStoredInput = true;
 
 	public static void main(String[] args) throws IOException
 	{
@@ -33,11 +33,12 @@ public class Main
 		String line2 = "1\n1";
 		String line3 = "2\n";
 		String line4 = "2\n";
-		String line5 = "exit\n";
-		String line6 = "y\n";
+		String line5 = "next\n";
+		String line6 = "next\n";
+		String line7 = "y\n";
 
 		String[] lines =
-		{ line1, line2, line3, line4, line5, line6 };
+		{ line1, line2, line3, line4, line5, line6, line7 };
 
 		return lines;
 	}

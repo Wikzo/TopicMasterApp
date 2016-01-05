@@ -40,6 +40,7 @@ public class TopicManager
 
 		_state = new SetupState(useDummyPlayers);
 		_state.EnterState(this);
+		_state.ExitState(this);
 
 		_state = new ShowTopicState();
 		_state.EnterState(this);
@@ -51,7 +52,7 @@ public class TopicManager
 		if (_state != null)
 		{
 			stateString = _state.Update(this);
-			System.out.println("\n***Current state: " + _state.getClass().getSimpleName() + "(debug)**");
+			System.out.println("(Current state: " + _state.getClass().getSimpleName() + " [debug])");
 		}
 		return stateString;
 	}

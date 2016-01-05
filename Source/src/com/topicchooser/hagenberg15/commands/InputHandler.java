@@ -46,7 +46,7 @@ public class InputHandler
 		BufferedReader reader = GetNextAvailableInput();
 		String input = reader.readLine().toLowerCase();
 
-		System.out.println("*Input: " + input + "*");
+		System.out.println(">>> INPUT: " + input);
 
 		return input;
 	}
@@ -54,7 +54,7 @@ public class InputHandler
 	public static String DisplayPossibleCommands(String[] strings)
 	{
 		StringBuffer s = new StringBuffer();
-		s.append("Possible commands: ");
+		s.append("--- Possible commands: ");
 		for (int i = 0; i < strings.length; i++)
 		{
 			s.append(strings[i]);
@@ -62,7 +62,7 @@ public class InputHandler
 			if (i + 1 < strings.length)
 				s.append(", ");
 		}
-		s.append("\n");
+		s.append(" ---\n");
 
 		System.out.println(s.toString());
 
@@ -73,7 +73,6 @@ public class InputHandler
 
 	public static ICommand HandleInput(TopicManager topicManager) throws IOException
 	{
-
 		String input = GetNextInput();
 
 		ICommand command = null;
@@ -200,8 +199,8 @@ public class InputHandler
 		// this will show some strange symbols in Eclipse's built-in console
 		// but it works with cmd in Windows
 
-		System.out.print("\033[H\033[2J");
-		System.out.flush();
+		//System.out.print("\033[H\033[2J");
+		//System.out.flush();
 	}
 
 }

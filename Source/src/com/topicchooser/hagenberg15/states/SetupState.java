@@ -53,7 +53,8 @@ public class SetupState implements IState
 	@Override
 	public String ExitState(TopicManager topicManager)
 	{
-		return "Setup state exit";
+		System.out.println(topicManager.PlayerManager.DisplayCurrentPlayers());
+		return topicManager.PlayerManager.DisplayCurrentPlayers();
 	}
 
 }

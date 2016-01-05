@@ -34,7 +34,7 @@ public class PlayerManager
 		}
 
 		String playerInfo = DisplayCurrentPlayers();
-		System.out.println(playerInfo);
+		//System.out.println(playerInfo);
 		return playerInfo;
 	}
 

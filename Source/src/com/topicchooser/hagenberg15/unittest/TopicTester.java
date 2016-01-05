@@ -18,47 +18,27 @@ public class TopicTester
 	TopicManager topicManager;
 	ICommand command;
 
-	Player player1 = new Player(1);
-	Player player2 = new Player(2);
-	Player player3 = new Player(3);
-
 	@Before
 	public void Setup()
 	{
 		playerManager = new PlayerManager();
-		Player[] dummies = InitializeDummyPlayers();
-		playerManager.SetupPlayersUsingDummies(dummies);
+		playerManager.SetupPlayers(true);
 
 		topicManager = new TopicManager(playerManager, true);
 		command = null;
 	}
 
-	private Player[] InitializeDummyPlayers()
-	{
-		player1.Name = "John";
-		player2.Name = "Joe";
-		player3.Name = "Jane";
-
-		player1.Age = 20;
-		player2.Age = 18;
-		player3.Age = 23;
-
-		player1.Gender = 'M';
-		player2.Gender = 'M';
-		player3.Gender = 'F';
-
-		return new Player[]
-		{ player1, player2, player3 };
-	}
-
 	@Test
-	public void TestDummyPlayerNames()
+	public void TestPlayerNames()
 	{
 		String expected = "";
 		expected += "\n----------\n";
-		expected +=  "These are the players:\n" + player1.toString() + "\n" + player2.toString() + "\n"
-				+ player3.toString();
-		expected += "\n----------";
+		expected +=  "These are the players:\n";
+
+		for (Player p : playerManager.Players)
+			expected += p.toString() + "\n";
+		
+		expected += "----------";
 
 		Assert.assertEquals(expected, playerManager.DisplayCurrentPlayers());
 	}

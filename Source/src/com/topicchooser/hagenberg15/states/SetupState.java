@@ -9,7 +9,7 @@ public class SetupState implements IState
 {
 
 	private boolean _useDummyPlayers = false;
-	
+
 	public SetupState(boolean useDummyPlayers)
 	{
 		this._useDummyPlayers = useDummyPlayers;
@@ -35,9 +35,8 @@ public class SetupState implements IState
 	{
 		System.out.println(
 				"Hello and welcome to TOPIC CHOOSER. Before we begin, we need some basic information about you...");
-		
-		if (!_useDummyPlayers)
-			topicManager.PlayerManager.SetupPlayers();
+
+		topicManager.PlayerManager.SetupPlayers(_useDummyPlayers);
 	}
 
 	@Override

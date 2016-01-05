@@ -9,28 +9,29 @@ public class PlayerManager
 {
 	public static List<Player> Players;
 
-	public String SetupPlayers()
+	public String SetupPlayers(boolean useDummyPlayers)
 	{
-		System.out.println("How many players are you?");
-		int numberOfPlayers = InputHandler.GetPositiveNumber();
-		numberOfPlayers = ValidatePlayerNumber(numberOfPlayers);
+		if (useDummyPlayers)
+		{
+			Player[] dummies = CreateDummyPlayers();
+			Players = new ArrayList<>(dummies.length);
 
-		System.out.println("OK, so you are " + numberOfPlayers + " players.");
+			for (int i = 0; i < dummies.length; i++)
+				Players.add(dummies[i]);
 
-		Players = new ArrayList<>(numberOfPlayers);
-		AddPlayers(numberOfPlayers);
+		}
+		else
+		{
+			System.out.println("How many players are you?");
+			int numberOfPlayers = InputHandler.GetPositiveNumber();
+			numberOfPlayers = ValidatePlayerNumber(numberOfPlayers);
 
-		String playerInfo = DisplayCurrentPlayers();
-		System.out.println(playerInfo);
-		return playerInfo;
-	}
-	
-	public String SetupPlayersUsingDummies(Player[] dummyPlayers)
-	{
-		Players = new ArrayList<>(dummyPlayers.length);
-		for (int i = 0; i < dummyPlayers.length; i++)
-			Players.add(dummyPlayers[i]);
-		
+			System.out.println("OK, so you are " + numberOfPlayers + " players.");
+
+			Players = new ArrayList<>(numberOfPlayers);
+			AddPlayers(numberOfPlayers);
+		}
+
 		String playerInfo = DisplayCurrentPlayers();
 		System.out.println(playerInfo);
 		return playerInfo;
@@ -72,8 +73,27 @@ public class PlayerManager
 		return number;
 	}
 
-	public static int GetPlayerCount()
+
+	public Player[] CreateDummyPlayers()
 	{
-		return Players.size();
+		Player[] dummies;
+		Player player1 = new Player(1);
+		Player player2 = new Player(2);
+		Player player3 = new Player(3);
+
+		player1.Name = "John";
+		player2.Name = "Joe";
+		player3.Name = "Jane";
+
+		player1.Age = 20;
+		player2.Age = 18;
+		player3.Age = 23;
+
+		player1.Gender = 'M';
+		player2.Gender = 'M';
+		player3.Gender = 'F';
+
+		return new Player[]
+		{ player1, player2, player3 };
 	}
 }

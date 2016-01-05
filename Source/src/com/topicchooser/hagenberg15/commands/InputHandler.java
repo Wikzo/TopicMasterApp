@@ -1,6 +1,9 @@
 package com.topicchooser.hagenberg15.commands;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.StringReader;
 import java.util.Scanner;
 
 import com.topicchooser.hagenberg15.topics.TopicManager;
@@ -36,15 +39,36 @@ public class InputHandler
 		return s.toString();
 	}
 
+	static int index = 0;
+	
+	static String line1 = "2\n";
+	static String line2 = "gustav\n";
+	static String line3 = "20\n";
+	static String line4 = "m\n";
+	static String line5 = "mathias0\n";
+	
+	static String[] lines = {line1, line2, line3, line4, line5};
+	
 	private static ICommand _previousCommand = null;
-
-	public static ICommand HandleInput(TopicManager topicManager)
+	public static ICommand HandleInput(TopicManager topicManager) throws IOException
 	{
 		// System.out.println(_possibleCommands);
 
-		Scanner keyboard = new Scanner(System.in);
-		String input = keyboard.nextLine().toLowerCase();
+		//Scanner keyboard = new Scanner(System.in);
+		//String input = keyboard.nextLine().toLowerCase();
+		
+		BufferedReader in_old = new BufferedReader(new InputStreamReader(System.in));
+		String input = in_old.readLine().toLowerCase();
 
+		/*
+		 BufferedReader in = new BufferedReader(new StringReader(
+				 lines[index++]
+		     ));
+		 
+		String input = in.readLine().toLowerCase();
+		
+		System.out.println("input: " + input);*/
+		
 		ICommand command = null;
 
 		if (input.equals("vote"))

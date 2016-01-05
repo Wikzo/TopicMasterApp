@@ -12,7 +12,7 @@ import com.topicchooser.hagenberg15.players.PlayerManager;
 import com.topicchooser.hagenberg15.states.IState;
 import com.topicchooser.hagenberg15.states.SetupState;
 import com.topicchooser.hagenberg15.states.ShowTopicState;
-import com.topicchooser.hagenberg15.states.VotingState;
+import com.topicchooser.hagenberg15.states.ShowVotingResultsState;
 
 public class TopicManager
 {

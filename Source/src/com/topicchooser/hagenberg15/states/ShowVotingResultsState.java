@@ -6,7 +6,7 @@ import com.topicchooser.hagenberg15.commands.InputHandler;
 import com.topicchooser.hagenberg15.commands.NextCommand;
 import com.topicchooser.hagenberg15.topics.TopicManager;
 
-public class VotingState implements IState
+public class ShowVotingResultsState implements IState
 {
 
 	private final String[] _commands =
@@ -30,18 +30,14 @@ public class VotingState implements IState
 	@Override
 	public void Update(TopicManager topicManager)
 	{
-		System.out.println("Voting has ended. Here are the results:\n");
-		System.out.println(topicManager.DisplayCurrentVotes());
-
-		System.out.println("\nUse the [next] command to get a new topic!\n");
-
 		InputHandler.DisplayPossibleCommands(_commands);
 	}
 
 	@Override
 	public void EnterState(TopicManager topicManager)
 	{
-		// System.out.println("Entering VOTING state");
+		System.out.println("Voting has ended. Here are the results:\n");
+		System.out.println(topicManager.DisplayCurrentVotes());
 
 		InputHandler.ClearConsole();
 

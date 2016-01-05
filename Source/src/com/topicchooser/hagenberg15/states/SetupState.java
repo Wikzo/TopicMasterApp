@@ -1,4 +1,4 @@
-package com.topicchooser.hagenberg15.states2;
+package com.topicchooser.hagenberg15.states;
 
 import com.topicchooser.hagenberg15.commands.ExitCommand;
 import com.topicchooser.hagenberg15.commands.VoteCommand;
@@ -8,9 +8,11 @@ import com.topicchooser.hagenberg15.topics.TopicManager;
 public class SetupState implements IState
 {
 
-	public SetupState()
+	private boolean _useDummyPlayers = false;
+	
+	public SetupState(boolean useDummyPlayers)
 	{
-
+		this._useDummyPlayers = useDummyPlayers;
 	}
 
 	@Override
@@ -33,7 +35,7 @@ public class SetupState implements IState
 	{
 		System.out.println(
 				"Hello and welcome to TOPIC CHOOSER. Before we begin, we need some basic information about you...");
-		topicManager.PlayerManager.SetupPlayers();
+		topicManager.PlayerManager.SetupPlayers(_useDummyPlayers);
 	}
 
 	@Override

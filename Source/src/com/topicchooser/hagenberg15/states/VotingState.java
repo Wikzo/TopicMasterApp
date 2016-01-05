@@ -1,37 +1,57 @@
 package com.topicchooser.hagenberg15.states;
 
-public class VotingState implements State
+import com.topicchooser.hagenberg15.commands.ExitCommand;
+import com.topicchooser.hagenberg15.commands.ICommand;
+import com.topicchooser.hagenberg15.commands.InputHandler;
+import com.topicchooser.hagenberg15.commands.NextCommand;
+import com.topicchooser.hagenberg15.topics.TopicManager;
+
+public class VotingState implements IState
 {
-	TopicMachine topicMachine;
 
-	public VotingState(TopicMachine topicMachine)
+	private final String[] _commands =
+	{ InputHandler.NextCommandString, InputHandler.ExitCommandString, InputHandler.UndoCommandString};
+
+	@Override
+	public IState HandleInput(ICommand input, TopicManager topicManager)
 	{
-		this.topicMachine = topicMachine;
+		if (input instanceof ExitCommand)
+			input.Execute(topicManager);
+
+		if (input instanceof NextCommand)
+		{
+			input.Execute(topicManager);
+			return new ShowTopicState();
+		}
+
+		return this;
 	}
 
-	public void talking()
+	@Override
+	public void Update(TopicManager topicManager)
 	{
-		System.out.println("You selected a topic");
-		topicMachine.setState(topicMachine.gettalkingState());
+		System.out.println("Voting has ended. Here are the results:\n");
+		System.out.println(topicManager.DisplayCurrentVotes());
+
+		System.out.println("\nUse the [next] command to get a new topic!\n");
+
+		InputHandler.DisplayPossibleCommands(_commands);
 	}
 
-	public void voting()
+	@Override
+	public void EnterState(TopicManager topicManager)
 	{
-		System.out.println("You haven't selected a topic");
+		// System.out.println("Entering VOTING state");
+
+		InputHandler.ClearConsole();
+
 	}
 
-	public void update()
+	@Override
+	public void ExitState(TopicManager topicManager)
 	{
-		System.out.println("You updated, but there's no topic");
+		// System.out.println("Exiting VOTING state");
+
 	}
 
-	public void result()
-	{
-		System.out.println("You need to add topics first");
-	}
-
-	public String toString()
-	{
-		return "waiting for topic";
-	}
 }

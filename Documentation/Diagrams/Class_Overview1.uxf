@@ -303,6 +303,7 @@ bg=white</panel_attributes>
     </coordinates>
     <panel_attributes>Player
 --
+String Name
 char Gender
 int Age
 bg=white</panel_attributes>

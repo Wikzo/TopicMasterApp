@@ -8,12 +8,12 @@ import com.topicchooser.hagenberg15.topics.TopicManager;
 public class Main
 {
 
-	public Main() {	}
-
+	final static boolean UseDummyPlayers = true;
+	
 	public static void main(String[] args)
 	{
 		PlayerManager playerManager = new PlayerManager();
-		TopicManager topicManager = new TopicManager(playerManager);
+		TopicManager topicManager = new TopicManager(playerManager, UseDummyPlayers);
 		ICommand command = null;
 		
 		boolean exit = false;

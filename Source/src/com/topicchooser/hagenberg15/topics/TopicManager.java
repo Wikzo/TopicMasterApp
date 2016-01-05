@@ -9,10 +9,10 @@ import com.topicchooser.hagenberg15.commands.ICommand;
 import com.topicchooser.hagenberg15.commands.InputHandler;
 import com.topicchooser.hagenberg15.players.Player;
 import com.topicchooser.hagenberg15.players.PlayerManager;
-import com.topicchooser.hagenberg15.states2.IState;
-import com.topicchooser.hagenberg15.states2.SetupState;
-import com.topicchooser.hagenberg15.states2.ShowTopicState;
-import com.topicchooser.hagenberg15.states2.VotingState;
+import com.topicchooser.hagenberg15.states.IState;
+import com.topicchooser.hagenberg15.states.SetupState;
+import com.topicchooser.hagenberg15.states.ShowTopicState;
+import com.topicchooser.hagenberg15.states.VotingState;
 
 public class TopicManager
 {
@@ -23,7 +23,7 @@ public class TopicManager
 	private List<Topic> _topicPool;
 	private IState _state;
 
-	public TopicManager(PlayerManager playerManager)
+	public TopicManager(PlayerManager playerManager, boolean useDummyPlayers)
 	{
 		this.PlayerManager = playerManager;
 		CurrentVotes = new Vote();
@@ -37,7 +37,7 @@ public class TopicManager
 			_topicPool.add(new Topic("Topic " + Integer.toString(i)));
 		}
 
-		_state = new SetupState();
+		_state = new SetupState(useDummyPlayers);
 		_state.EnterState(this);
 
 		_state = new ShowTopicState();

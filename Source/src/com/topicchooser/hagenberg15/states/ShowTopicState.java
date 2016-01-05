@@ -1,4 +1,4 @@
-package com.topicchooser.hagenberg15.states2;
+package com.topicchooser.hagenberg15.states;
 
 import com.topicchooser.hagenberg15.commands.ExitCommand;
 import com.topicchooser.hagenberg15.commands.VoteCommand;

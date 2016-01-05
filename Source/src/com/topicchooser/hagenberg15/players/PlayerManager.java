@@ -9,35 +9,34 @@ public class PlayerManager
 {
 	public static List<Player> Players;
 
-	public String SetupPlayers(boolean useDummyPlayers)
+	public String SetupPlayers()
 	{
-		Players = new ArrayList<>();
-		
-		int number = 0;
-		if (useDummyPlayers)
-		{
-			number = 3;
+		System.out.println("How many players are you?");
+		int numberOfPlayers = InputHandler.GetPositiveNumber();
+		numberOfPlayers = ValidatePlayerNumber(numberOfPlayers);
 
-		} 
-		else
-		{
-			System.out.println("How many players are you?");
+		System.out.println("OK, so you are " + numberOfPlayers + " players.");
 
-			number = InputHandler.GetPositiveNumber();
-
-			number = CheckPlayerCount(number);
-
-			System.out.println("OK, so you are " + number + " players.");
-		}
-
-		AddPlayers(number, useDummyPlayers);
+		Players = new ArrayList<>(numberOfPlayers);
+		AddPlayers(numberOfPlayers);
 
 		String playerInfo = DisplayCurrentPlayers();
 		System.out.println(playerInfo);
 		return playerInfo;
 	}
+	
+	public String SetupPlayersUsingDummies(Player[] dummyPlayers)
+	{
+		Players = new ArrayList<>(dummyPlayers.length);
+		for (int i = 0; i < dummyPlayers.length; i++)
+			Players.add(dummyPlayers[i]);
+		
+		String playerInfo = DisplayCurrentPlayers();
+		System.out.println(playerInfo);
+		return playerInfo;
+	}
 
-	private String DisplayCurrentPlayers()
+	public String DisplayCurrentPlayers()
 	{
 		StringBuffer s = new StringBuffer();
 
@@ -51,18 +50,17 @@ public class PlayerManager
 		return s.toString();
 	}
 
-	private void AddPlayers(int number, boolean useDummyPlayers)
+	private void AddPlayers(int number)
 	{
 		for (int i = 0; i < number; i++)
 		{
 			Player p = new Player(i + 1);
-			p.Initializeplayer(useDummyPlayers);
+			p.Initializeplayer();
 			Players.add(p);
 		}
 	}
-	
 
-	private int CheckPlayerCount(int number)
+	private int ValidatePlayerNumber(int number)
 	{
 		while (number <= 1)
 		{

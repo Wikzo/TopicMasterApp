@@ -15,25 +15,23 @@ public class Player
 		this.PlayerID = playerID;
 	}
 
-	public void Initializeplayer(boolean useDummyData)
+	public void Initializeplayer()
 	{
-		if (useDummyData)
-		{
-			Name = "DummyPlayer_" + PlayerID;
-			Age = PlayerID;
-			Gender = 'M';
-		} 
-		else
-		{
-			System.out.println("\nPlease tell me the name of player " + PlayerID + ":");
-			Name = InputHandler.GetNextString();
+		System.out.println("\nPlease tell me the name of player " + PlayerID + ":");
+		Name = InputHandler.GetNextString();
 
-			System.out.println("\nHowdy, " + Name + ". Please tell me your age:");
-			Age = InputHandler.GetPositiveNumber();
+		System.out.println("\nHowdy, " + Name + ". Please tell me your age:");
+		Age = InputHandler.GetPositiveNumber();
 
-			System.out.println("\nOh, and " + Name + ", would you mind telling me your gender as well:");
-			Gender = InputHandler.GetGenderChar();
-		}
+		System.out.println("\nOh, and " + Name + ", would you mind telling me your gender as well:");
+		Gender = InputHandler.GetGenderChar();
+	}
+
+	public void InitializePlayerPredefined()
+	{
+		Name = "TestName_" + PlayerID;
+		Age = PlayerID;
+		Gender = 'M';
 	}
 
 	@Override

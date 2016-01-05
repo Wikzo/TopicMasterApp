@@ -30,25 +30,31 @@ public class ShowVotingResultsState implements IState
 	}
 
 	@Override
-	public void Update(TopicManager topicManager)
+	public String Update(TopicManager topicManager)
 	{
 		InputHandler.DisplayPossibleCommands(_commands);
+		
+		return "Show Voting state update";
 	}
 
 	@Override
-	public void EnterState(TopicManager topicManager)
+	public String EnterState(TopicManager topicManager)
 	{
-		System.out.println("Voting has ended. Here are the results:\n");
-		System.out.println(topicManager.DisplayCurrentVotes());
+		String results = "Voting has now ended. Here are the results:\n";
+		results += topicManager.DisplayCurrentVotes();
+		
+		System.out.println(results);
 
 		InputHandler.ClearConsole();
+		
+		return results;
 
 	}
 
 	@Override
-	public void ExitState(TopicManager topicManager)
+	public String ExitState(TopicManager topicManager)
 	{
-		// System.out.println("Exiting VOTING state");
+		return "Show Voting state exit";
 
 	}
 

@@ -36,23 +36,27 @@ public class ShowTopicState implements IState
 	}
 
 	@Override
-	public void Update(TopicManager topicManager)
+	public String Update(TopicManager topicManager)
 	{
-		System.out.println("CURRENT TOPIC: " + topicManager.DisplayCurrentTopic() + "\n");
+		String currentTopic = "CURRENT TOPIC: " + topicManager.DisplayCurrentTopic() + "\n";
 		
 		InputHandler.DisplayPossibleCommands(_commands);
+		
+		return currentTopic;
 	}
 
 	@Override
-	public void EnterState(TopicManager topicManager)
+	public String EnterState(TopicManager topicManager)
 	{
 		InputHandler.ClearConsole();
+		
+		return "ShowTopic state enter";
 	}
 
 	@Override
-	public void ExitState(TopicManager topicManager)
+	public String ExitState(TopicManager topicManager)
 	{
-		//System.out.println("Exiting SHOW TOPIC state");
+		return "ShowTopic state exit";
 	}
 
 }

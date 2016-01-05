@@ -45,17 +45,20 @@ public class TopicManager
 		_state.EnterState(this);
 	}
 
-	public void Update()
+	public String Update()
 	{
+		String stateString = "";
 		if (_state != null)
 		{
-			_state.Update(this);
+			stateString = _state.Update(this);
 			System.out.println("\n***Current state: " + _state.getClass().getSimpleName() + "(debug)**");
 		}
+		return stateString;
 	}
 
-	public void HandleInputAndState(ICommand command) throws IOException
+	public String HandleInputAndState(ICommand command) throws IOException
 	{
+		String stateString = "";
 		IState temp = _state.HandleInput(command, this);
 
 		if (temp != _state)
@@ -63,8 +66,10 @@ public class TopicManager
 			_state.ExitState(this);
 			_state = null;
 			_state = temp;
-			_state.EnterState(this);
+			stateString = _state.EnterState(this);
 		}
+
+		return stateString;
 	}
 
 	public String DisplayCurrentTopic()

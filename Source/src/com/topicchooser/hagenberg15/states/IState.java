@@ -9,9 +9,7 @@ public interface IState
 {
 	IState HandleInput(ICommand input, TopicManager topicManager) throws IOException;
 
-	void Update(TopicManager topicManager);
-
-	void EnterState(TopicManager topicManager);
-
-	void ExitState(TopicManager topicManager);
+	String Update(TopicManager topicManager);
+	String EnterState(TopicManager topicManager);
+	String ExitState(TopicManager topicManager);
 }

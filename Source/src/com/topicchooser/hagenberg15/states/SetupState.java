@@ -27,16 +27,16 @@ public class SetupState implements IState
 	}
 
 	@Override
-	public void Update(TopicManager topicManager)
+	public String Update(TopicManager topicManager)
 	{
-
+		return "Setup state update";
 	}
 
 	@Override
-	public void EnterState(TopicManager topicManager)
+	public String EnterState(TopicManager topicManager)
 	{
-		System.out.println(
-				"Hello and welcome to TOPIC CHOOSER. Before we begin, we need some basic information about you...");
+		String hello = "Hello and welcome to TOPIC CHOOSER. Before we begin, we need some basic information about you...";
+		System.out.println(hello);
 
 		try
 		{
@@ -46,12 +46,14 @@ public class SetupState implements IState
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		return hello;
 	}
 
 	@Override
-	public void ExitState(TopicManager topicManager)
+	public String ExitState(TopicManager topicManager)
 	{
-
+		return "Setup state exit";
 	}
 
 }

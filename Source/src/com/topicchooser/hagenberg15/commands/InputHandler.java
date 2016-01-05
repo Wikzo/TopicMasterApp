@@ -14,13 +14,42 @@ import com.topicchooser.hagenberg15.topics.TopicManager;
 public class InputHandler
 {
 
-	// TODO: only show POSSIBLE commands (depending on the current state)
-	private final static String _possibleCommands = "\nCommands:\n[vote], [next], [undo], [exit]\n";
+	public static void SetStoredInputs(String[] storedInputs)
+	{
+		_useStoredInput = true;
+		_storedDummyInputs = storedInputs;
+		_storedInputIndex = 0;
+	}
+
+	private static boolean _useStoredInput = false;
+	private static int _storedInputIndex;
+	private static String[] _storedDummyInputs;
 
 	public final static String VoteCommandString = "[vote]";
 	public final static String NextCommandString = "[next]";
 	public final static String UndoCommandString = "[undo]";
 	public final static String ExitCommandString = "[exit]";
+
+	public static BufferedReader GetNextAvailableInput()
+	{
+		if (_useStoredInput && _storedInputIndex + 1 <= _storedDummyInputs.length)
+			return new BufferedReader(new StringReader(_storedDummyInputs[_storedInputIndex++]));
+		else
+			return new BufferedReader(new InputStreamReader(System.in));
+	}
+
+	static String GetNextInput() throws IOException
+	{
+		// input handling inspired by
+		// https://stackoverflow.com/questions/4230402/testing-console-based-applications-programs-java
+
+		BufferedReader reader = GetNextAvailableInput();
+		String input = reader.readLine().toLowerCase();
+
+		System.out.println("*Input: " + input + "*");
+
+		return input;
+	}
 
 	public static String DisplayPossibleCommands(String[] strings)
 	{
@@ -40,37 +69,12 @@ public class InputHandler
 		return s.toString();
 	}
 
-	static String GetNextInput() throws IOException
-	{
-		// input handling inspired by
-		// https://stackoverflow.com/questions/4230402/testing-console-based-applications-programs-java
-		
-		BufferedReader reader = Main.NextInput();
-		String input = reader.readLine().toLowerCase();
-		
-		System.out.println("*Input: " + input + "*");
-		
-		return input;
-	}
-
 	private static ICommand _previousCommand = null;
 
 	public static ICommand HandleInput(TopicManager topicManager) throws IOException
 	{
-		// System.out.println(_possibleCommands);
-
-		// Scanner keyboard = new Scanner(System.in);
-		// String input = keyboard.nextLine().toLowerCase();
 
 		String input = GetNextInput();
-
-		/*
-		 * BufferedReader in = new BufferedReader(new StringReader(
-		 * lines[index++] ));
-		 * 
-		 * String input = in.readLine().toLowerCase();
-		 */
-		
 
 		ICommand command = null;
 
@@ -107,14 +111,13 @@ public class InputHandler
 
 	public static int GetPositiveNumber() throws IOException
 	{
-		
+
 		int number = 0;
 
 		System.out.println("Enter a number:");
 		String input = GetNextInput();
-		
+
 		number = TryParse(input);
-			
 
 		return number;
 	}

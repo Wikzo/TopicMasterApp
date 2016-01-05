@@ -1,5 +1,7 @@
 package com.topicchooser.hagenberg15.states;
 
+import java.io.IOException;
+
 import com.topicchooser.hagenberg15.commands.ExitCommand;
 import com.topicchooser.hagenberg15.commands.VoteCommand;
 import com.topicchooser.hagenberg15.commands.ICommand;
@@ -17,7 +19,7 @@ public class ShowTopicState implements IState
 	}
 
 	@Override
-	public IState HandleInput(ICommand input, TopicManager topicManager)
+	public IState HandleInput(ICommand input, TopicManager topicManager) throws IOException
 	{
 
 		if (input instanceof ExitCommand)

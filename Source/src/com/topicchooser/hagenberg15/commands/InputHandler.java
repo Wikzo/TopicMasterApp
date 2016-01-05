@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.io.StringReader;
 import java.util.Scanner;
 
+import com.topicchooser.hagenberg15.main.Main;
 import com.topicchooser.hagenberg15.topics.TopicManager;
 
 // "Invoker"
@@ -39,36 +40,38 @@ public class InputHandler
 		return s.toString();
 	}
 
-	static int index = 0;
-	
-	static String line1 = "2\n";
-	static String line2 = "gustav\n";
-	static String line3 = "20\n";
-	static String line4 = "m\n";
-	static String line5 = "mathias0\n";
-	
-	static String[] lines = {line1, line2, line3, line4, line5};
-	
+	static String GetNextInput() throws IOException
+	{
+		// input handling inspired by
+		// https://stackoverflow.com/questions/4230402/testing-console-based-applications-programs-java
+		
+		BufferedReader reader = Main.NextInput();
+		String input = reader.readLine().toLowerCase();
+		
+		System.out.println("*Input: " + input + "*");
+		
+		return input;
+	}
+
 	private static ICommand _previousCommand = null;
+
 	public static ICommand HandleInput(TopicManager topicManager) throws IOException
 	{
 		// System.out.println(_possibleCommands);
 
-		//Scanner keyboard = new Scanner(System.in);
-		//String input = keyboard.nextLine().toLowerCase();
-		
-		BufferedReader in_old = new BufferedReader(new InputStreamReader(System.in));
-		String input = in_old.readLine().toLowerCase();
+		// Scanner keyboard = new Scanner(System.in);
+		// String input = keyboard.nextLine().toLowerCase();
+
+		String input = GetNextInput();
 
 		/*
-		 BufferedReader in = new BufferedReader(new StringReader(
-				 lines[index++]
-		     ));
-		 
-		String input = in.readLine().toLowerCase();
+		 * BufferedReader in = new BufferedReader(new StringReader(
+		 * lines[index++] ));
+		 * 
+		 * String input = in.readLine().toLowerCase();
+		 */
 		
-		System.out.println("input: " + input);*/
-		
+
 		ICommand command = null;
 
 		if (input.equals("vote"))
@@ -89,10 +92,12 @@ public class InputHandler
 		return command;
 	}
 
-	public static boolean GetYesOrNo()
+	public static boolean GetYesOrNo() throws IOException
 	{
-		Scanner keyboard = new Scanner(System.in);
-		String input = keyboard.nextLine().toLowerCase();
+		// Scanner keyboard = new Scanner(System.in);
+		// String input = keyboard.nextLine().toLowerCase();
+
+		String input = GetNextInput();
 
 		if (input.equals("y"))
 			return true;
@@ -100,7 +105,21 @@ public class InputHandler
 			return false;
 	}
 
-	public static int GetPositiveNumber()
+	public static int GetPositiveNumber() throws IOException
+	{
+		
+		int number = 0;
+
+		System.out.println("Enter a number:");
+		String input = GetNextInput();
+		
+		number = TryParse(input);
+			
+
+		return number;
+	}
+
+	public static int GetPositiveNumberOriginal()
 	{
 		Scanner sc = new Scanner(System.in);
 		int number;
@@ -118,10 +137,24 @@ public class InputHandler
 		return number;
 	}
 
-	public static String GetNextString()
+	public static Integer TryParse(String text)
 	{
-		Scanner sc = new Scanner(System.in);
-		return sc.nextLine();
+		try
+		{
+			return Integer.parseInt(text);
+		} catch (NumberFormatException e)
+		{
+			return null;
+		}
+	}
+
+	public static String GetNextString() throws IOException
+	{
+		String input = GetNextInput();
+		return input;
+
+		// Scanner sc = new Scanner(System.in);
+		// return sc.nextLine();
 	}
 
 	public static char GetGenderChar()

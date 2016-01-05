@@ -1,5 +1,6 @@
 package com.topicchooser.hagenberg15.commands;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 import com.topicchooser.hagenberg15.players.Player;
@@ -16,7 +17,7 @@ public class VoteCommand implements ICommand
 	}
 
 	@Override
-	public void Execute(TopicManager topicManager)
+	public void Execute(TopicManager topicManager) throws IOException
 	{
 		_previousVotes = topicManager.CurrentVotes;
 		Vote newVotes = new Vote();
@@ -27,7 +28,7 @@ public class VoteCommand implements ICommand
 		topicManager.CurrentVotes = newVotes;
 	}
 
-	private void CastVote(Vote newVotes, Player p, TopicManager topicManager)
+	private void CastVote(Vote newVotes, Player p, TopicManager topicManager) throws IOException
 	{
 		System.out.println("CURRENT TOPIC: " + topicManager.CurrentTopic.TopicText + "\n");
 

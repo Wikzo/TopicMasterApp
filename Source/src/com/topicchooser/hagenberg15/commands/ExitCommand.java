@@ -1,5 +1,7 @@
 package com.topicchooser.hagenberg15.commands;
 
+import java.io.IOException;
+
 import com.topicchooser.hagenberg15.topics.TopicManager;
 
 public class ExitCommand implements ICommand
@@ -11,7 +13,7 @@ public class ExitCommand implements ICommand
 	}
 
 	@Override
-	public void Execute(TopicManager topicManager)
+	public void Execute(TopicManager topicManager) throws IOException
 	{
 		topicManager.Exit();
 	}

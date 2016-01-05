@@ -1,5 +1,7 @@
 package com.topicchooser.hagenberg15.players;
 
+import java.io.IOException;
+
 import com.topicchooser.hagenberg15.commands.InputHandler;
 
 public class Player
@@ -15,7 +17,7 @@ public class Player
 		this.PlayerID = playerID;
 	}
 
-	public void Initializeplayer()
+	public void Initializeplayer() throws IOException
 	{
 		System.out.println("\nPlease tell me the name of player " + PlayerID + ":");
 		Name = InputHandler.GetNextString();

@@ -1,5 +1,7 @@
 package com.topicchooser.hagenberg15.states;
 
+import java.io.IOException;
+
 import com.topicchooser.hagenberg15.commands.ExitCommand;
 import com.topicchooser.hagenberg15.commands.VoteCommand;
 import com.topicchooser.hagenberg15.commands.ICommand;
@@ -16,7 +18,7 @@ public class SetupState implements IState
 	}
 
 	@Override
-	public IState HandleInput(ICommand input, TopicManager topicManager)
+	public IState HandleInput(ICommand input, TopicManager topicManager) throws IOException
 	{
 		if (input instanceof ExitCommand)
 			input.Execute(topicManager);
@@ -36,7 +38,14 @@ public class SetupState implements IState
 		System.out.println(
 				"Hello and welcome to TOPIC CHOOSER. Before we begin, we need some basic information about you...");
 
-		topicManager.PlayerManager.SetupPlayers(_useDummyPlayers);
+		try
+		{
+			topicManager.PlayerManager.SetupPlayers(_useDummyPlayers);
+		} catch (IOException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override

@@ -1,5 +1,6 @@
 package com.topicchooser.hagenberg15.players;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +10,7 @@ public class PlayerManager
 {
 	public static List<Player> Players;
 
-	public String SetupPlayers(boolean useDummyPlayers)
+	public String SetupPlayers(boolean useDummyPlayers) throws IOException
 	{
 		if (useDummyPlayers)
 		{
@@ -51,7 +52,7 @@ public class PlayerManager
 		return s.toString();
 	}
 
-	private void AddPlayers(int number)
+	private void AddPlayers(int number) throws IOException
 	{
 		for (int i = 0; i < number; i++)
 		{
@@ -61,7 +62,7 @@ public class PlayerManager
 		}
 	}
 
-	private int ValidatePlayerNumber(int number)
+	private int ValidatePlayerNumber(int number) throws IOException
 	{
 		while (number <= 1)
 		{

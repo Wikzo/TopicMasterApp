@@ -1,5 +1,7 @@
 package com.topicchooser.hagenberg15.unittest;
 
+import java.io.IOException;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -19,7 +21,7 @@ public class TopicTester
 	ICommand command;
 
 	@Before
-	public void Setup()
+	public void Setup() throws IOException
 	{
 		playerManager = new PlayerManager();
 		playerManager.SetupPlayers(true);

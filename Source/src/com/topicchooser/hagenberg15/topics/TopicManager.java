@@ -1,5 +1,6 @@
 package com.topicchooser.hagenberg15.topics;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -53,7 +54,7 @@ public class TopicManager
 		}
 	}
 
-	public void HandleInputAndState(ICommand command)
+	public void HandleInputAndState(ICommand command) throws IOException
 	{
 		IState temp = _state.HandleInput(command, this);
 
@@ -85,7 +86,7 @@ public class TopicManager
 		CurrentTopic = _topicPool.get(next);
 	}
 
-	public void Exit()
+	public void Exit() throws IOException
 	{
 		System.out.println("Are you really sure you want to exit?\nY / N");
 

@@ -13,12 +13,18 @@ import com.topicchooser.hagenberg15.topics.TopicManager;
 
 public class Main
 {
-	private final static boolean _useStoredInput = true;
-	
+	private final static boolean _useStoredInput = false;
+
 	public static void main(String[] args) throws IOException
 	{
-		TopicChooserFacade facade = new TopicChooserFacade(_useStoredInput, StoredInput());
-		facade.Start();
+		TopicChooserFacade facade;
+
+		if (_useStoredInput)
+			facade = new TopicChooserFacade(StoredInput());
+		else
+			facade = new TopicChooserFacade(null);
+		
+		facade.Run();
 	}
 
 	public static String[] StoredInput()

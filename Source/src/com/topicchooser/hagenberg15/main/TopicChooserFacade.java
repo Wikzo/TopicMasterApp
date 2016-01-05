@@ -13,35 +13,40 @@ import com.topicchooser.hagenberg15.topics.TopicManager;
 
 public class TopicChooserFacade
 {
-	private final static boolean _useStoredInput = true;
-	
-	PlayerManager playerManager;
-	TopicManager topicManager;
-	ICommand command;
-	
-	public TopicChooserFacade(boolean useStoredInputs, String[] storedInputs)
+	private boolean _useStoredInput = false;
+	private String[] _storedInput;
+
+	public PlayerManager PlayerManager;
+	public TopicManager TopicManager;
+	public ICommand Command;
+
+	public TopicChooserFacade(String[] storedInputs)
 	{
-		if (useStoredInputs && storedInputs == null)
-			throw new RuntimeException("Error! Need to assign the stored inputs!");
+		boolean useStoredInputsAndDummyData = (storedInputs == null) ? false : true;
 		
-		if (useStoredInputs)
-			InputHandler.SetStoredInputs(storedInputs);
+		if (useStoredInputsAndDummyData)
+		{
+			_useStoredInput = true;
+			_storedInput = storedInputs;
+			InputHandler.SetStoredInputs(_storedInput);
+		}
 		
-		 playerManager = new PlayerManager();
-		 topicManager = new TopicManager(playerManager, _useStoredInput);
-		 command = null;
+		PlayerManager = new PlayerManager();
+		TopicManager = new TopicManager(PlayerManager, _useStoredInput);
+		Command = null;
 	}
-	
-	public void Start() throws IOException
-	{
+
+
+	public void Run() throws IOException
+	{		
 		boolean exit = false;
 		while (!exit)
 		{
-			topicManager.Update();
+			TopicManager.Update();
 
-			command = InputHandler.HandleInput(topicManager);
-			if (command != null)
-				topicManager.HandleInputAndState(command);
+			Command = InputHandler.HandleInput(TopicManager);
+			if (Command != null)
+				TopicManager.HandleInputAndState(Command);
 		}
 	}
 

@@ -65,5 +65,26 @@ public class TopicTester
 		Assert.assertEquals(expected, results);//
 		
 	}
+	
+	@Test
+	public void CheckFalseTopic() throws IOException
+	{
+		String expected = "";
+		String results = "";
+		
+		// Comparing different topic value
+		expected += "\nCURRENT TOPIC: Dogs\n";
+		expected += "\nVOTING HAS ENDED. Here are the results:\n";
+		expected += "More like this: 1\n";
+		expected += "Something different: 2\n";
+		expected += "Keyword search: 0\n";
+		expected += "\nUse the [next] command to get a new topic.\n";
+		facade.UpdateNextStep();
+		results = facade.UpdateString + facade.StateString;
+		
+		//Assert.assertEquals(expected, results); // old way
+		Assert.assertFalse(expected.equalsIgnoreCase(results));
+		
+	}
 
 }

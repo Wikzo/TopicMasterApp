@@ -55,6 +55,9 @@ public class ShowTopicState implements IState
 		
 		//System.out.println(topicManager.GetCurrentState());
 		
+		// TODO: TopicManager.CalculateNewTopic()
+		
+		
 		return EnterString;
 	}
 

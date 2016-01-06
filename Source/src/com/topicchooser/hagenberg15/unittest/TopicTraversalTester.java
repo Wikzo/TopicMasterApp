@@ -6,10 +6,13 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import com.topicchooser.hagenberg15.topics.Topic;
+import com.topicchooser.hagenberg15.topics.VoteContainer;
 
 public class TopicTraversalTester
 {
 
+	VoteContainer VoteContainer;
+	
 	Topic RootTopic;
 
 	Topic Cat;
@@ -26,12 +29,13 @@ public class TopicTraversalTester
 	
 	Topic Movies;
 	Topic SciFi;
+	Topic Fantasy;
 
 	@Before
 	public void SetupStuff()
 	{
 		RootTopic = new Topic("Root");
-
+		
 		Cat = new Topic("Cat");
 		Lion = new Topic("Lion");
 		Tiger = new Topic("Tiger");
@@ -46,6 +50,7 @@ public class TopicTraversalTester
 		
 		Movies = new Topic("Movies");
 		SciFi = new Topic("Sci-fi");
+		Fantasy = new Topic("Fantasy");
 		
 		// level 1
 		RootTopic.SetParent(Cat);
@@ -59,6 +64,7 @@ public class TopicTraversalTester
 		Dog.SetParent(SmallDogs);
 		Dog.SetParent(BigDogs);
 		Movies.SetParent(SciFi);
+		Movies.SetParent(Fantasy);
 		
 		// level 3
 		BigDogs.SetParent(GermanSherpard);
@@ -113,13 +119,72 @@ public class TopicTraversalTester
 	}
 	
 	@Test
-	public void TestGetParentTwoLevels()
+	public void TestGetParentThreeLevels()
 	{	
-		String expected = Dog.toString();
+		String expected = RootTopic.toString();
 		String results = "";
 		
-		results = GermanSherpard.GetParent(2).toString();		
+		results = GermanSherpard.GetParent(50).toString();		
 		
 		Assert.assertEquals(expected, results);
+	}
+	
+	@Test
+	public void TestMoodCalculatorWithNegativeVotes()
+	{	
+		VoteContainer voteContainer = new VoteContainer(BigDogs);
+		
+		voteContainer.AddVote(1);
+		voteContainer.AddVote(1);
+		voteContainer.AddVote(1);
+		voteContainer.AddVote(1);
+		voteContainer.AddVote(1);
+		voteContainer.AddVote(1);
+
+		voteContainer.AddVote(2);
+		voteContainer.AddVote(2);
+
+		voteContainer.AddVote(3);
+
+		Topic newTopic = voteContainer.GetNextTopic(9);
+	
+		String expected = BigDogs.GetParent(2).toString();
+		String results = "";
+		
+		results = newTopic.toString();		
+		
+		Assert.assertEquals(expected, results);
+	}
+	
+	@Test
+	public void TestMoodCalculatorWithPositveVotes()
+	{	
+		SciFi.VisitTopic();
+		//Fantasy.VisitTopic();
+		
+		VoteContainer voteContainer = new VoteContainer(SciFi);
+		
+		voteContainer.AddVote(2);
+		voteContainer.AddVote(2);
+		voteContainer.AddVote(3);
+
+		Topic newTopic = voteContainer.GetNextTopic(3);
+	
+		String expected = Fantasy.toString();
+		String results = "";
+		
+		results = newTopic.toString();		
+		
+		Assert.assertEquals(expected, results);
+	}
+	
+	@Test
+	public void TestGetParentWithZero()
+	{
+		String expected = GermanSherpard.Parent.toString();
+		String results = GermanSherpard.GetParent(1).toString();
+		
+		Assert.assertEquals(expected, results);
+		
 	}
 }

@@ -34,11 +34,15 @@ public class Main
 		String line3 = "2\n";
 		String line4 = "2\n";
 		String line5 = "next\n";
-		String line6 = "exit\n";
-		String line7 = "n\n";
+		String line6 = "vote\n";
+		String line7 = "3\n";
+		String line8 = "3\n";
+		String line9 = "1\n";
+		String line10 = "exit\n";
+		String line11 = "n\n";
 
 		String[] lines =
-		{ line1, line2, line3, line4, line5, line6, line7 };
+		{ line1, line2, line3, line4, line5, line6, line7, line8, line9, line10, line11 };
 
 		return lines;
 	}

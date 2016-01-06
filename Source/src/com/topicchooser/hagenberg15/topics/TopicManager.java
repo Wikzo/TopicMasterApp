@@ -88,13 +88,18 @@ public class TopicManager
 		return CurrentVotes.toString();
 	}
 
+	int nextTopicIndex = 0;
 	public void CalculateNextTopic()
 	{
+		// RANDOM TOPIC
 		Random random = new Random();
 
 		int next = 0;
 		next = random.nextInt(_topicPool.size());
 		CurrentTopic = _topicPool.get(next);
+		
+		// PREDEFINED TOPIC
+		//CurrentTopic = _topicPool.get(nextTopicIndex++);
 	}
 
 	public void Exit() throws IOException

@@ -46,6 +46,7 @@ public class ShowVotingResultsState implements IState
 	{
 		String results = "\nVOTING HAS ENDED. Here are the results:\n";
 		results += topicManager.DisplayCurrentVotes() + "\n";
+		results += "\nUse the [next] command to get a new topic.\n";
 		
 		//System.out.println(results);
 

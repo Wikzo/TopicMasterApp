@@ -58,23 +58,12 @@ public class TopicTester
 		expected += "More like this: 1\n";
 		expected += "Something different: 2\n";
 		expected += "Keyword search: 0\n";
+		expected += "\nUse the [next] command to get a new topic.\n";
 		facade.UpdateNextStep();
 		results = facade.UpdateString + facade.StateString;
 		
 		Assert.assertEquals(expected, results);
-		System.out.println("-------- RESULTS0: " + results + " --- RESULTS0 end");
 		
-		// getting next topic
-		facade.UpdateNextStep();
-		facade.UpdateNextStep();
-		results = facade.UpdateString + facade.StateString;
-		System.out.println("-------- RESULTS1: " + results + " --- RESULTS1 end");
-		
-		
-		/*facade.UpdateNextStep();
-		results = facade.UpdateString + facade.StateString;
-		System.out.println("-------- RESULTS2: " + results + " --- RESULTS2 end");*/
-		//results = facade.UpdateNextStep();
 	}
 
 }

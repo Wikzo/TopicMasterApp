@@ -30,14 +30,15 @@ public class VoteCommand implements ICommand
 
 	private void CastVote(Vote newVotes, Player p, TopicManager topicManager) throws IOException
 	{
-		System.out.println("CURRENT TOPIC: " + topicManager.CurrentTopic.TopicText + "\n");
-
-		System.out.println(p.Name + ", please vote:");
-		System.out.println(ShowVotingOptions());
-
 		int vote = -1;
 		while (vote != 1 && vote != 2 && vote != 3)
+		{
+			System.out.println("CURRENT TOPIC: " + topicManager.CurrentTopic.TopicText + "\n");
+
+			System.out.println(p.Name.toUpperCase() + ", please vote:");
+			System.out.println(ShowVotingOptions());
 			vote = InputHandler.GetPositiveNumber();
+		}
 
 		newVotes.AddVote(vote);
 

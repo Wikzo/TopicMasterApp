@@ -63,16 +63,36 @@ public class TopicTester
 		String results = "";
 		
 		// voting on topics
-		expected = "Voting has now ended. Here are the results:\n";
+		expected = "CURRENT TOPIC: Cats\n";
+		expected += "Voting has now ended. Here are the results:\n";
 		expected += "More like this: 1\n";
 		expected += "Something different: 2\n";
 		expected += "Keyword search: 0";
 		results = facade.UpdateNextStep();
-		Assert.assertEquals(expected, results);
+		
+		Assert.assertTrue(expected.equalsIgnoreCase(results));
 		
 		// getting next topic
 		results = facade.UpdateNextStep();
 		results = facade.UpdateNextStep();
+	}
+	
+	@Test
+	public void CheckFalseTopic() throws IOException
+	{
+		String expected = "";
+		String results = "";
+		
+		// Comparing different topic value
+		expected = "CURRENT TOPIC: Dog\n";
+		expected += "Voting has now ended. Here are the results:\n";
+		expected += "More like this: 1\n";
+		expected += "Something different: 2\n";
+		expected += "Keyword search: 0";
+		results = facade.UpdateNextStep();
+		
+		Assert.assertFalse(expected.equalsIgnoreCase(results));
+		
 	}
 
 }

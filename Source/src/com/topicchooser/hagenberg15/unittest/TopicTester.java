@@ -62,7 +62,7 @@ public class TopicTester
 		facade.UpdateNextStep();
 		results = facade.UpdateString + facade.StateString;
 		
-		Assert.assertEquals(expected, results);
+		Assert.assertEquals(expected, results);//
 		
 	}
 

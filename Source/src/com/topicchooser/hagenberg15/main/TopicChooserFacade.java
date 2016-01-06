@@ -41,7 +41,7 @@ public class TopicChooserFacade
 		boolean exit = false;
 		while (!exit)
 		{
-			System.out.println(UpdateNextStep());
+			UpdateNextStep();
 		}
 	}
 

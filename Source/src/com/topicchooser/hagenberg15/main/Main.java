@@ -34,7 +34,7 @@ public class Main
 		String line3 = "2\n";
 		String line4 = "2\n";
 		String line5 = "next\n";
-		String line6 = "next\n";
+		String line6 = "exit\n";
 		String line7 = "y\n";
 
 		String[] lines =

@@ -38,7 +38,9 @@ public class ShowTopicState implements IState
 	@Override
 	public String Update(TopicManager topicManager)
 	{
-		String currentTopic = "CURRENT TOPIC: " + topicManager.DisplayCurrentTopic() + "\n";
+		String currentTopic = "\nCURRENT TOPIC: " + topicManager.DisplayCurrentTopic() + "\n";
+		
+		System.out.println(currentTopic);
 		
 		InputHandler.DisplayPossibleCommands(_commands);
 		
@@ -49,8 +51,11 @@ public class ShowTopicState implements IState
 	public String EnterState(TopicManager topicManager)
 	{
 		InputHandler.ClearConsole();
+		String enter = "ShowTopic state enter";
+		System.out.println(enter);
 		
-		return "ShowTopic state enter";
+		//Update(topicManager);
+		return enter;
 	}
 
 	@Override

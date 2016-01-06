@@ -46,7 +46,7 @@ public class InputHandler
 		BufferedReader reader = GetNextAvailableInput();
 		String input = reader.readLine().toLowerCase();
 
-		System.out.println(">>> INPUT: " + input);
+		System.out.println("\n>>> INPUT: " + input);
 
 		return input;
 	}

@@ -40,8 +40,10 @@ public class ShowVotingResultsState implements IState
 	@Override
 	public String EnterState(TopicManager topicManager)
 	{
-		String results = "Voting has now ended. Here are the results:\n";
-		results += topicManager.DisplayCurrentVotes();
+		//System.out.println("-----enter showvoting");
+		
+		String results = "\nVOTING HAS NOW ENDED. Here are the results:\n";
+		results += topicManager.DisplayCurrentVotes() + "\n";
 		
 		System.out.println(results);
 

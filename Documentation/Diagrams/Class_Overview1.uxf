@@ -284,90 +284,9 @@ m2=1</panel_attributes>
       <w>580</w>
       <h>390</h>
     </coordinates>
-    <panel_attributes>ITERATOR
+    <panel_attributes>TOPICS
 layer=-1
 bg=dark_gray</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>1560</x>
-      <y>740</y>
-      <w>130</w>
-      <h>90</h>
-    </coordinates>
-    <panel_attributes>&lt;&lt;Interface&gt;&gt;
-IIterator
---
-Boolean HasNext()
-Topic Next()
-
-bg=white</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>1640</x>
-      <y>880</y>
-      <w>100</w>
-      <h>30</h>
-    </coordinates>
-    <panel_attributes>NullIterator
-
-bg=white</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>1530</x>
-      <y>880</y>
-      <w>100</w>
-      <h>30</h>
-    </coordinates>
-    <panel_attributes>TopicIterator
-
-bg=white</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>1570</x>
-      <y>820</y>
-      <w>70</w>
-      <h>80</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
-    <additional_attributes>50.0;10.0;50.0;40.0;10.0;40.0;10.0;60.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>1610</x>
-      <y>820</y>
-      <w>100</w>
-      <h>80</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;40.0;80.0;40.0;80.0;60.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLNote</id>
-    <coordinates>
-      <x>1800</x>
-      <y>780</y>
-      <w>210</w>
-      <h>190</h>
-    </coordinates>
-    <panel_attributes>NOTE:
-Need to figure out how to iterator throughout CHILD TOPiCS, PARENT TOPICS and SIBLING TOPICS.
-
-Have multiple lists or multiple iterators?
-
-bg=white</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -571,9 +490,10 @@ bg=white</panel_attributes>
       <x>240</x>
       <y>720</y>
       <w>120</w>
-      <h>30</h>
+      <h>40</h>
     </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m2=1</panel_attributes>
     <additional_attributes>10.0;10.0;100.0;10.0</additional_attributes>
   </element>
 </diagram>

@@ -42,7 +42,7 @@ public class Topic
 		return _kids.get(index);
 	}
 
-	protected Topic GetParent(int levelsToGoUp)
+	public Topic GetParent(int levelsToGoUp)
 	{
 		// TODO: recursive is dangerous!
 

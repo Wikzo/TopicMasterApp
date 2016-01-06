@@ -69,6 +69,8 @@ public class TopicTraversalTester
 	@Test
 	public void TestSibling()
 	{
+		// Big Dogs have only one kid: German shepard
+		
 		String expected = GermanSherpard.toString();
 		String results = "";
 		
@@ -77,4 +79,47 @@ public class TopicTraversalTester
 		Assert.assertEquals(expected, results);
 	}
 
+	
+	@Test
+	public void TestSiblingWithNoKids()
+	{
+		// ChineseCat have no kids --> go up one level and pick a new one
+		
+		String[] expected = {ChineseCat.toString(), Lion.toString(), Tiger.toString()};
+		String results = "";
+		
+		results = ChineseCat.GetKid().toString();
+		
+		boolean isCorrect = false;
+		if (results.equalsIgnoreCase(ChineseCat.toString()))
+			isCorrect = true;
+		if (results.equalsIgnoreCase(Lion.toString()))
+			isCorrect = true;
+		if (results.equalsIgnoreCase(Tiger.toString()))
+			isCorrect = true;
+
+		Assert.assertTrue(isCorrect);
+	}
+	
+	@Test
+	public void TestGetParentOneLevel()
+	{	
+		String expected = BigDogs.toString();
+		String results = "";
+		
+		results = GermanSherpard.GetParent(1).toString();		
+		
+		Assert.assertEquals(expected, results);
+	}
+	
+	@Test
+	public void TestGetParentTwoLevels()
+	{	
+		String expected = Dog.toString();
+		String results = "";
+		
+		results = GermanSherpard.GetParent(2).toString();		
+		
+		Assert.assertEquals(expected, results);
+	}
 }

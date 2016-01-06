@@ -52,9 +52,14 @@ public class TopicManager
 		if (_state != null)
 		{
 			stateString = _state.Update(this);
-			System.out.println("(Current state: " + _state.getClass().getSimpleName() + " [debug])");
+			System.out.println("(Current state: " + GetCurrentState() + " [debug])");
 		}
 		return stateString;
+	}
+	
+	public String GetCurrentState()
+	{
+		return  _state.getClass().getSimpleName();
 	}
 
 	public String HandleInputAndState(ICommand command) throws IOException

@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import com.sun.xml.internal.ws.api.addressing.AddressingVersion.EPR;
 import com.topicchooser.hagenberg15.commands.ICommand;
+import com.topicchooser.hagenberg15.main.Main;
 import com.topicchooser.hagenberg15.main.TopicChooserFacade;
 import com.topicchooser.hagenberg15.players.Player;
 import com.topicchooser.hagenberg15.players.PlayerManager;
@@ -21,18 +22,7 @@ public class TopicTester
 
 	public static String[] StoredInput()
 	{
-		String line1 = "vote\n";
-		String line2 = "1\n1";
-		String line3 = "2\n";
-		String line4 = "2\n";
-		String line5 = "next\n";
-		String line6 = "exit\n";
-		String line7 = "y\n";
-
-		String[] lines =
-		{ line1, line2, line3, line4, line5, line6, line7 };
-
-		return lines;
+		return Main.StoredInput();
 	}
 
 	@Before
@@ -63,16 +53,28 @@ public class TopicTester
 		String results = "";
 		
 		// voting on topics
-		expected = "Voting has now ended. Here are the results:\n";
+		expected += "\nCURRENT TOPIC: Cats\n";
+		expected += "\nVOTING HAS ENDED. Here are the results:\n";
 		expected += "More like this: 1\n";
 		expected += "Something different: 2\n";
-		expected += "Keyword search: 0";
-		results = facade.UpdateNextStep();
+		expected += "Keyword search: 0\n";
+		facade.UpdateNextStep();
+		results = facade.UpdateString + facade.StateString;
+		
 		Assert.assertEquals(expected, results);
+		System.out.println("-------- RESULTS0: " + results + " --- RESULTS0 end");
 		
 		// getting next topic
-		results = facade.UpdateNextStep();
-		results = facade.UpdateNextStep();
+		facade.UpdateNextStep();
+		facade.UpdateNextStep();
+		results = facade.UpdateString + facade.StateString;
+		System.out.println("-------- RESULTS1: " + results + " --- RESULTS1 end");
+		
+		
+		/*facade.UpdateNextStep();
+		results = facade.UpdateString + facade.StateString;
+		System.out.println("-------- RESULTS2: " + results + " --- RESULTS2 end");*/
+		//results = facade.UpdateNextStep();
 	}
 
 }

@@ -19,6 +19,9 @@ public class TopicChooserFacade
 	public PlayerManager PlayerManager;
 	public TopicManager TopicManager;
 	public ICommand Command;
+	
+	public String UpdateString = "";
+	public String StateString = "";
 
 	public TopicChooserFacade(String[] storedInputs)
 	{
@@ -45,17 +48,17 @@ public class TopicChooserFacade
 		}
 	}
 
-	public String UpdateNextStep() throws IOException
+	public void UpdateNextStep() throws IOException
 	{
-		String result = "";
+		UpdateString ="";
+		StateString ="";
 		
-		result += TopicManager.Update();
+		UpdateString = TopicManager.Update();
 
 		Command = InputHandler.HandleInput(TopicManager);
 		if (Command != null)
-			result += TopicManager.HandleInputAndState(Command);
-		
-		return result;
+			StateString = TopicManager.HandleInputAndState(Command);
+
 	}
 
 }

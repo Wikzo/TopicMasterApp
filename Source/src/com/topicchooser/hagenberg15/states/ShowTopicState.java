@@ -12,12 +12,10 @@ import com.topicchooser.hagenberg15.topics.TopicManager;
 public class ShowTopicState implements IState
 {
 	
-	private final String[] _commands = {InputHandler.VoteCommandString, InputHandler.ExitCommandString};
+	public final String[] PossibleCommands = {InputHandler.VoteCommandString, InputHandler.ExitCommandString};
 
-	public ShowTopicState()
-	{
-	}
-
+	public final String EnterString = "Calculating a new topic...";
+	
 	@Override
 	public IState HandleInput(ICommand input, TopicManager topicManager) throws IOException
 	{
@@ -42,7 +40,7 @@ public class ShowTopicState implements IState
 		
 		System.out.println(currentTopic);
 		
-		InputHandler.DisplayPossibleCommands(_commands);
+		InputHandler.DisplayPossibleCommands(PossibleCommands);
 		
 		return currentTopic;
 	}
@@ -51,11 +49,13 @@ public class ShowTopicState implements IState
 	public String EnterState(TopicManager topicManager)
 	{
 		InputHandler.ClearConsole();
-		String enter = "ShowTopic state enter";
-		System.out.println(enter);
+		System.out.println(EnterString);
 		
 		//Update(topicManager);
-		return enter;
+		
+		//System.out.println(topicManager.GetCurrentState());
+		
+		return EnterString;
 	}
 
 	@Override

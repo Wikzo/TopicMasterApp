@@ -11,8 +11,9 @@ import com.topicchooser.hagenberg15.topics.TopicManager;
 public class ShowVotingResultsState implements IState
 {
 
-	private final String[] _commands =
+	public final String[] PossibleCommands =
 	{ InputHandler.NextCommandString, InputHandler.ExitCommandString, InputHandler.UndoCommandString};
+	
 
 	@Override
 	public IState HandleInput(ICommand input, TopicManager topicManager) throws IOException
@@ -32,22 +33,23 @@ public class ShowVotingResultsState implements IState
 	@Override
 	public String Update(TopicManager topicManager)
 	{
-		InputHandler.DisplayPossibleCommands(_commands);
+		String results = EnterState(topicManager);
 		
-		return "Show Voting state update";
+		System.out.println(results);
+		
+		InputHandler.DisplayPossibleCommands(PossibleCommands);
+		return results;
 	}
 
 	@Override
 	public String EnterState(TopicManager topicManager)
 	{
-		//System.out.println("-----enter showvoting");
-		
-		String results = "\nVOTING HAS NOW ENDED. Here are the results:\n";
+		String results = "\nVOTING HAS ENDED. Here are the results:\n";
 		results += topicManager.DisplayCurrentVotes() + "\n";
 		
-		System.out.println(results);
+		//System.out.println(results);
 
-		InputHandler.ClearConsole();
+		//InputHandler.ClearConsole();
 		
 		return results;
 

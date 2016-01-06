@@ -1,15 +1,21 @@
 package com.topicchooser.hagenberg15.topics;
 
-public class Vote
+public class VoteContainer
 {
 
 	public int MoreLikeThisVotes;
 	public int SomethingDifferentVotes;
 	public int KeywordSearchVotes;
+	
+	protected Topic _topic;
 
-	public Vote()
+	public VoteContainer(Topic topic)
 	{
 		ResetAllVotes();
+		
+		_topic = topic;
+		_topic.AssociateWithVotes(this);
+		
 	}
 
 	public void ResetAllVotes()

@@ -5,12 +5,12 @@ import java.util.Scanner;
 
 import com.topicchooser.hagenberg15.players.Player;
 import com.topicchooser.hagenberg15.topics.TopicManager;
-import com.topicchooser.hagenberg15.topics.Vote;
+import com.topicchooser.hagenberg15.topics.VoteContainer;
 
 public class VoteCommand implements ICommand
 {
 
-	private Vote _previousVotes;
+	private VoteContainer _previousVotes;
 
 	public VoteCommand()
 	{
@@ -20,7 +20,7 @@ public class VoteCommand implements ICommand
 	public void Execute(TopicManager topicManager) throws IOException
 	{
 		_previousVotes = topicManager.CurrentVotes;
-		Vote newVotes = new Vote();
+		VoteContainer newVotes = new VoteContainer(topicManager.CurrentTopic);
 
 		for (Player p : topicManager.PlayerManager.Players)
 			CastVote(newVotes, p, topicManager);
@@ -28,7 +28,7 @@ public class VoteCommand implements ICommand
 		topicManager.CurrentVotes = newVotes;
 	}
 
-	private void CastVote(Vote newVotes, Player p, TopicManager topicManager) throws IOException
+	private void CastVote(VoteContainer newVotes, Player p, TopicManager topicManager) throws IOException
 	{
 		int vote = -1;
 		while (vote != 1 && vote != 2 && vote != 3)
@@ -53,8 +53,11 @@ public class VoteCommand implements ICommand
 	@Override
 	public void Undo(TopicManager topicManager)
 	{
-		System.out.println("\n[Undoing previous vote...]\n");
-		topicManager.CurrentVotes = _previousVotes;
+		if (_previousVotes != null)
+		{
+			System.out.println("\n[Undoing previous vote...]\n");
+			topicManager.CurrentVotes = _previousVotes;
+		}
 	}
 
 }

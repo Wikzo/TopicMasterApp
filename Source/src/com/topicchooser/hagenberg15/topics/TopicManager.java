@@ -18,7 +18,7 @@ import com.topicchooser.hagenberg15.states.ShowVotingResultsState;
 public class TopicManager
 {
 	public PlayerManager PlayerManager;
-	public Vote CurrentVotes;
+	public VoteContainer CurrentVotes;
 	public Topic CurrentTopic;
 
 	private List<Topic> _topicPool;
@@ -27,7 +27,7 @@ public class TopicManager
 	public TopicManager(PlayerManager playerManager, boolean useDummyPlayers)
 	{
 		this.PlayerManager = playerManager;
-		CurrentVotes = new Vote();
+		CurrentVotes = null;
 
 		CurrentTopic = new Topic("Cats");
 

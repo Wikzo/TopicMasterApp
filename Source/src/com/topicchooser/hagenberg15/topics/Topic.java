@@ -8,23 +8,18 @@ public class Topic
 
 	public String TopicText = "Topic Text Test";
 
-	protected int _moreLikeThis;
-	protected int _somethingDifferent;
-	protected int _keyWordSearch;
-
 	protected Topic _root;
 	protected Topic _child;
 	protected Topic _sibling;
+	protected VoteContainer _voteContainer;
 
 	public Topic(String topicText)
 	{
 		this.TopicText = topicText;
 	}
 
-	void AddVotesToTopic(Vote vote)
+	public void AssociateWithVotes(VoteContainer voteContainer)
 	{
-		_moreLikeThis = vote.MoreLikeThisVotes;
-		_somethingDifferent = vote.SomethingDifferentVotes;
-		_keyWordSearch = vote.KeywordSearchVotes;
+		this._voteContainer = voteContainer;
 	}
 }

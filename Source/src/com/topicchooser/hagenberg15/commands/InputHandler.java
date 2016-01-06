@@ -110,7 +110,6 @@ public class InputHandler
 
 	public static int GetPositiveNumber() throws IOException
 	{
-
 		int number = 0;
 
 		System.out.println("Enter a number:");

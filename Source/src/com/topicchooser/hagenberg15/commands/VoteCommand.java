@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 import com.topicchooser.hagenberg15.players.Player;
+import com.topicchooser.hagenberg15.states.ShowTopicState;
 import com.topicchooser.hagenberg15.topics.TopicManager;
 import com.topicchooser.hagenberg15.topics.VoteContainer;
 
@@ -14,6 +15,7 @@ public class VoteCommand implements ICommand
 
 	public VoteCommand()
 	{
+		
 	}
 
 	@Override
@@ -57,6 +59,8 @@ public class VoteCommand implements ICommand
 		{
 			System.out.println("\n[Undoing previous vote...]\n");
 			topicManager.CurrentVotes = _previousVotes;
+			
+			topicManager.ChangeState(topicManager.GetPreviousState());
 		}
 	}
 

@@ -26,7 +26,7 @@ public class ShowTopicState implements IState
 		
 		if (input instanceof VoteCommand) // and when time has passed...
 		{
-			input.Execute(topicManager);
+			input.Execute(topicManager); // TODO: needs to return bool
 			return new ShowVotingResultsState();
 		}
 

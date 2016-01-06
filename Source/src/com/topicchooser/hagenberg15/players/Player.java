@@ -29,12 +29,6 @@ public class Player
 		Gender = InputHandler.GetGenderChar();
 	}
 
-	public void InitializePlayerPredefined()
-	{
-		Name = "TestName_" + PlayerID;
-		Age = PlayerID;
-		Gender = 'M';
-	}
 
 	@Override
 	public String toString()

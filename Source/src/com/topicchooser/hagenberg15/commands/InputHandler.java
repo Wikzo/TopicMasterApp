@@ -45,6 +45,8 @@ public class InputHandler
 
 		BufferedReader reader = GetNextAvailableInput();
 		String input = reader.readLine().toLowerCase();
+		
+		// TODO: prevent user from pressing enter multiple times
 
 		System.out.println("\n>>> INPUT: " + input);
 

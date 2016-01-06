@@ -23,13 +23,13 @@ public class TopicManager
 
 	private List<Topic> _topicPool;
 	private IState _state;
+	private IState _previousState;
 
 	public TopicManager(PlayerManager playerManager, boolean useDummyPlayers)
 	{
 		this.PlayerManager = playerManager;
-		CurrentVotes = null;
-
 		CurrentTopic = new Topic("Cats");
+		CurrentVotes = new VoteContainer(CurrentTopic);
 
 		_topicPool = new ArrayList<>();
 
@@ -61,21 +61,31 @@ public class TopicManager
 	{
 		return  _state.getClass().getSimpleName();
 	}
+	
+	public IState GetPreviousState()
+	{
+		return _previousState;
+	}
 
 	public String HandleInputAndState(ICommand command) throws IOException
 	{
 		String stateString = "";
 		IState temp = _state.HandleInput(command, this);
 
-		if (temp != _state)
-		{
-			_state.ExitState(this);
-			_state = null;
-			_state = temp;
-			stateString = _state.EnterState(this);
-		}
+		if (temp != _state)	
+			ChangeState(temp);
+		
+		stateString = _state.EnterState(this);
 
 		return stateString;
+	}
+	
+	public void ChangeState(IState state)
+	{
+		_previousState = _state;
+		
+		_state.ExitState(this);
+		_state = state;
 	}
 
 	public String DisplayCurrentTopic()

@@ -38,14 +38,16 @@ public class SetupState implements IState
 		String hello = "Hello and welcome to TOPIC CHOOSER. Before we begin, we need some basic information about you...";
 		System.out.println(hello);
 
-		try
-		{
-			topicManager.PlayerManager.SetupPlayers(_useDummyPlayers);
-		} catch (IOException e)
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
+			try
+			{
+				topicManager.PlayerManager.SetupPlayers(_useDummyPlayers);
+			} catch (IOException e)
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
 		
 		return hello;
 	}

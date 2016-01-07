@@ -281,8 +281,8 @@ m2=1</panel_attributes>
     <coordinates>
       <x>1520</x>
       <y>700</y>
-      <w>580</w>
-      <h>390</h>
+      <w>950</w>
+      <h>520</h>
     </coordinates>
     <panel_attributes>TOPICS
 layer=-1
@@ -465,17 +465,6 @@ bg=white</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1450</x>
-      <y>430</y>
-      <w>120</w>
-      <h>30</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;100.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
       <x>1160</x>
       <y>430</y>
       <w>110</w>
@@ -495,5 +484,96 @@ bg=white</panel_attributes>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m2=1</panel_attributes>
     <additional_attributes>10.0;10.0;100.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1550</x>
+      <y>840</y>
+      <w>220</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>TopicContainer
+--
+Topics
+Set RootTopic
+Set ParentTopic
+
+bg=white</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2210</x>
+      <y>820</y>
+      <w>210</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>VoteContainer
+--
+int HateVotes;
+int OkayVotes;
+int LoveVotes;
+int _numberOfVotes;
+--
+void ResetAllVotes()
+void AddVote()
+GetNextTopic()
+MoodCalculator()
+
+bg=white</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2100</x>
+      <y>900</y>
+      <w>130</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m2=1</panel_attributes>
+    <additional_attributes>10.0;10.0;110.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1890</x>
+      <y>830</y>
+      <w>220</w>
+      <h>250</h>
+    </coordinates>
+    <panel_attributes>Topic
+--
+boolean _hasBeenVisited;
+List&lt;Topic&gt; _kids
+List&lt;Topic&gt; AllTopics 
+--
+GetKid()
+GetSibling()
+GetRandomKid()
+GetRandomTopic()
+GetParent()
+ValidateTopic()
+SetParent()
+VisitTopic()
+AssociateWithVotes()
+
+bg=white</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1760</x>
+      <y>900</y>
+      <w>150</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m2=1</panel_attributes>
+    <additional_attributes>10.0;10.0;130.0;10.0</additional_attributes>
   </element>
 </diagram>

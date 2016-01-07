@@ -50,7 +50,8 @@ public class InputHandler
 		
 		// TODO: prevent user from pressing enter multiple times
 
-		System.out.println("\n>>> INPUT: " + input);
+		if (_useStoredInput)
+			System.out.println("\n>>> INPUT: " + input);
 
 		return input;
 	}
@@ -91,21 +92,13 @@ public class InputHandler
 			command = new ExitCommand();
 		else
 			System.out.println("ERROR: invalid input command. Please try again!\n\n");
-		
-		/*if (input.equals("vote"))
-			command = new VoteCommand();
-		else if (input.equals("next"))
-			command = new NextCommand();
-		else if (input.equals("undo") && _previousCommand != null)
-			_previousCommand.Undo(topicManager);
-		else if (input.equals("exit"))
-			command = new ExitCommand();
-		else
-			System.out.println("ERROR: invalid input command. Please try again!\n\n");*/
 
 		_previousCommand = command;
 
 		System.out.println();
+		
+		if (command != null)
+			ClearConsole();
 
 		return command;
 	}
@@ -190,7 +183,7 @@ public class InputHandler
 
 		while (!correct)
 		{
-			System.out.println("Male / Female / Other:");
+			System.out.println("[M]ale / [F]emale / [O]ther:");
 			String input = sc.nextLine().toLowerCase();
 
 			if (input.equals("male") || input.equals("m"))
@@ -221,8 +214,8 @@ public class InputHandler
 		// this will show some strange symbols in Eclipse's built-in console
 		// but it works with cmd in Windows
 
-		//System.out.print("\033[H\033[2J");
-		//System.out.flush();
+		System.out.print("\033[H\033[2J");
+		System.out.flush();
 	}
 
 }

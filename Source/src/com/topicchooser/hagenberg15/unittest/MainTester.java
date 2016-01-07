@@ -66,19 +66,5 @@ public class MainTester
 		Assert.assertTrue(contains);
 	}
 	
-	/*@Test
-	public void TestDecimalNumber() throws IOException
-	{
-		// Will only run after getting input from console (due to while loop)
-		 * 
-		String[] numbers = {"1"};
-		
-		InputHandler.SetStoredInputs(numbers);
-		
-		int results = InputHandler.GetPositiveNumber();
-		int expected = 1;
-		
-		Assert.assertEquals(expected, results);
-	}*/
 
 }

@@ -44,6 +44,13 @@ public class VoteCounter
 
 	public Topic GetNextTopic(int numberOfPlayers)
 	{
+		float avgMean = CalculateMood(numberOfPlayers);
+
+		return MoodAnalyzer(avgMean);
+	}
+
+	public float CalculateMood(int numberOfPlayers)
+	{
 		if (_numberOfVotes != numberOfPlayers)
 			throw new RuntimeException("ERROR: number of players are not correct!");
 
@@ -51,17 +58,17 @@ public class VoteCounter
 		float denominator = numberOfPlayers;
 
 		float avgMean = numerator / denominator;
-
-		return MoodCalculator(avgMean);
+		return avgMean;
 	}
+	
 
-	private Topic MoodCalculator(float mood)
+	private Topic MoodAnalyzer(float mood)
 	{
 		//System.out.println("Mood: " + mood + "%");
 
-		if (mood > 50) // positive
+		if (mood >= 50) // positive
 			return _topic.GetKid();
-		else if (mood > 25) // a little negative
+		else if (mood >= 25) // a little negative
 			return _topic.GetParent(1);
 		else // very negative
 			return _topic.GetParent(2);

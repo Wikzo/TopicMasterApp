@@ -50,7 +50,7 @@ public class TopicManager
 		if (_state != null)
 		{
 			stateString = _state.Update(this);
-			System.out.println("(Current state: " + GetCurrentState() + " [debug])");
+			//System.out.println("(Current state: " + GetCurrentState() + " [debug])");
 		}
 		return stateString;
 	}
@@ -93,7 +93,9 @@ public class TopicManager
 
 	public String DisplayCurrentVotes()
 	{
-		return CurrentVoteCounter.toString();
+		String mood = Float.toString(CurrentVoteCounter.CalculateMood(PlayerManager.GetNumberOfPlayers()));
+		String topicText = "Overall mood for " + CurrentTopic.toString();
+		return topicText + " was " + mood + "%";
 	}
 
 	int nextTopicIndex = 0;

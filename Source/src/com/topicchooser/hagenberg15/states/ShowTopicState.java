@@ -16,7 +16,7 @@ public class ShowTopicState implements IState
 	public final String[] PossibleCommands =
 	{ VoteCommand.ShowCommandToUser(), ShowResultsCommand.ShowCommandToUser(), ExitCommand.ShowCommandToUser() };
 
-	public final String EnterString = "Calculating a new topic...";
+	public final String EnterString = "";
 
 	@Override
 	public IState HandleInput(ICommand input, TopicManager topicManager) throws IOException
@@ -40,7 +40,7 @@ public class ShowTopicState implements IState
 	@Override
 	public String Update(TopicManager topicManager)
 	{
-		String currentTopic = "\nCURRENT TOPIC: " + topicManager.DisplayCurrentTopic() + "\n";
+		String currentTopic = "CURRENT TOPIC: " + topicManager.DisplayCurrentTopic() + "\n";
 
 		System.out.println(currentTopic);
 

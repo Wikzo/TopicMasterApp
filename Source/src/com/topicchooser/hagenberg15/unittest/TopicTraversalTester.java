@@ -23,36 +23,32 @@ public class TopicTraversalTester
 	}
 
 	@Test
-	public void TestSibling()
+	public void TestKidWithNoSibling()
 	{
-		// Big Dogs have only one kid: German shepard
 		
-		String expected = TopicContainer.GermanSherpard.toString();
+		String expected = TopicContainer.ChineseDogs.toString();
 		String results = "";
 		
-		results = TopicContainer.BigDogs.GetKid().toString();		
+		results = TopicContainer.Dogs.GetKid().toString();		
 		
 		Assert.assertEquals(expected, results);
 	}
 
 	
 	@Test
-	public void TestSiblingWithNoKids()
+	public void TestGettingEmptyKid()
 	{
-		// ChineseCat have no kids --> go up one level and pick a new one
-		
-		String[] expected = {TopicContainer.ChineseCat.toString(), TopicContainer.Lion.toString(), TopicContainer.Tiger.toString()};
+		String[] expected = {TopicContainer.Cats.toString(), TopicContainer.Dogs.toString()};
 		String results = "";
 		
-		results = TopicContainer.ChineseCat.GetKid().toString();
+		results = TopicContainer.Cats.GetKid().toString();
 		
 		boolean isCorrect = false;
-		if (results.equalsIgnoreCase(TopicContainer.ChineseCat.toString()))
+		if (results.equalsIgnoreCase(TopicContainer.Cats.toString()))
 			isCorrect = true;
-		if (results.equalsIgnoreCase(TopicContainer.Lion.toString()))
+		if (results.equalsIgnoreCase(TopicContainer.Dogs.toString()))
 			isCorrect = true;
-		if (results.equalsIgnoreCase(TopicContainer.Tiger.toString()))
-			isCorrect = true;
+
 
 		Assert.assertTrue(isCorrect);
 	}
@@ -60,10 +56,10 @@ public class TopicTraversalTester
 	@Test
 	public void TestGetParentOneLevel()
 	{	
-		String expected = TopicContainer.BigDogs.toString();
+		String expected = TopicContainer.Dogs.toString();
 		String results = "";
 		
-		results = TopicContainer.GermanSherpard.GetParent(1).toString();		
+		results = TopicContainer.ChineseDogs.GetParent(1).toString();		
 		
 		Assert.assertEquals(expected, results);
 	}
@@ -71,10 +67,10 @@ public class TopicTraversalTester
 	@Test
 	public void TestGetParentThreeLevels()
 	{	
-		String expected = TopicContainer.RootTopic.toString();
+		String expected = TopicContainer.Biology.toString();
 		String results = "";
 		
-		results = TopicContainer.GermanSherpard.GetParent(50).toString();		
+		results = TopicContainer.ChineseDogs.GetParent(3).toString();		
 		
 		Assert.assertEquals(expected, results);
 	}
@@ -82,7 +78,7 @@ public class TopicTraversalTester
 	@Test
 	public void TestMoodCalculatorWithNegativeVotes()
 	{	
-		VoteContainer voteContainer = new VoteContainer(TopicContainer.BigDogs);
+		VoteContainer voteContainer = new VoteContainer(TopicContainer.Denmark);
 		
 		voteContainer.AddVote(1);
 		voteContainer.AddVote(1);
@@ -98,7 +94,7 @@ public class TopicTraversalTester
 
 		Topic newTopic = voteContainer.GetNextTopic(9);
 	
-		String expected = TopicContainer.BigDogs.GetParent(2).toString();
+		String expected = TopicContainer.Denmark.GetParent(2).toString();
 		String results = "";
 		
 		results = newTopic.toString();		
@@ -107,32 +103,34 @@ public class TopicTraversalTester
 	}
 	
 	@Test
-	public void TestMoodCalculatorWithPositveVotes()
+	public void TestMoodCalculatorWithPositiveVotes()
 	{	
-		TopicContainer.SciFi.VisitTopic();
+		TopicContainer.Scifi.VisitTopic();
 		//Fantasy.VisitTopic();
 		
-		VoteContainer voteContainer = new VoteContainer(TopicContainer.SciFi);
+		VoteContainer voteContainer = new VoteContainer(TopicContainer.Scifi);
 		
 		voteContainer.AddVote(2);
 		voteContainer.AddVote(2);
 		voteContainer.AddVote(3);
 
 		Topic newTopic = voteContainer.GetNextTopic(3);
-	
-		String expected = TopicContainer.Fantasy.toString();
-		String results = "";
+		String results = newTopic.toString();
 		
-		results = newTopic.toString();		
+		boolean isCorrect = false;
+		if (results.equalsIgnoreCase(TopicContainer.StarWars.toString()))
+			isCorrect = true;
+		if (results.equalsIgnoreCase(TopicContainer.Gravity.toString()))
+			isCorrect = true;	
 		
-		Assert.assertEquals(expected, results);
+		Assert.assertTrue(isCorrect);
 	}
 	
 	@Test
-	public void TestGetParentWithZero()
+	public void TestGetParentRecursionWithOneLevel()
 	{
-		String expected = TopicContainer.GermanSherpard.Parent.toString();
-		String results = TopicContainer.GermanSherpard.GetParent(1).toString();
+		String expected = TopicContainer.ChineseDogs.Parent.toString();
+		String results = TopicContainer.ChineseDogs.GetParent(1).toString();
 		
 		Assert.assertEquals(expected, results);
 		

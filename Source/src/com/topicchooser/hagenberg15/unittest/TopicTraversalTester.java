@@ -20,7 +20,6 @@ public class TopicTraversalTester
 	public void SetupStuff()
 	{
 		TopicContainer = new TopicContainer();
-
 	}
 
 	@Test

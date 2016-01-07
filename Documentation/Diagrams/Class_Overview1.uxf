@@ -141,7 +141,7 @@ bg=white</panel_attributes>
 TopicManager
 --
 PlayerManager PlayerManager
-VoteContainer CurrentVotes
+VoteCounter CurrentVoteCounter
 Topic CurrentTopic
 --
 String Update()
@@ -431,8 +431,8 @@ bg=white</panel_attributes>
     <panel_attributes>TopicContainer
 --
 List&lt;Topic&gt; Topics
-Set RootTopic
-Set ParentTopic
+void InitializeTopics
+void SetParentRelationship
 
 bg=white</panel_attributes>
     <additional_attributes/>
@@ -445,7 +445,7 @@ bg=white</panel_attributes>
       <w>210</w>
       <h>180</h>
     </coordinates>
-    <panel_attributes>VoteContainer
+    <panel_attributes>VoteCounter
 --
 Topic Topic
 int HateVotes;

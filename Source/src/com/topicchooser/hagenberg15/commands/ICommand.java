@@ -8,4 +8,5 @@ public interface ICommand
 {
 	void Execute(TopicManager topicManager) throws IOException;
 	void Undo(TopicManager topicManager); // undo is indepedent of the current state in TopicManager!
+	
 }

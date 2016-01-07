@@ -75,6 +75,11 @@ public class PlayerManager
 	}
 
 
+	public int GetNumberOfPlayers()
+	{
+		return Players.size();
+	}
+	
 	public Player[] CreateDummyPlayers()
 	{
 		Player[] dummies;

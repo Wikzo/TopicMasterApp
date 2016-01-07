@@ -18,25 +18,23 @@ import com.topicchooser.hagenberg15.states.ShowVotingResultsState;
 public class TopicManager
 {
 	public PlayerManager PlayerManager;
-	public VoteContainer CurrentVotes;
+	public VoteCounter CurrentVoteCounter;
 	public Topic CurrentTopic;
+	public TopicContainer TopicContainer;
 
-	private List<Topic> _topicPool;
 	private IState _state;
 	private IState _previousState;
 
 	public TopicManager(PlayerManager playerManager, boolean useDummyPlayers)
 	{
+		TopicContainer = new TopicContainer();
+		TopicContainer.CreateTopics();
+		CurrentTopic = TopicContainer.GetStartingTopic();
+		CurrentTopic.VisitTopic();
+		
 		this.PlayerManager = playerManager;
-		CurrentTopic = new Topic("Cats");
-		CurrentVotes = new VoteContainer(CurrentTopic);
 
-		_topicPool = new ArrayList<>();
-
-		for (int i = 0; i < 5; i++)
-		{
-			_topicPool.add(new Topic("Topic " + Integer.toString(i)));
-		}
+		CurrentVoteCounter = new VoteCounter(CurrentTopic);
 
 		_state = new SetupState(useDummyPlayers);
 		_state.EnterState(this);
@@ -95,21 +93,14 @@ public class TopicManager
 
 	public String DisplayCurrentVotes()
 	{
-		return CurrentVotes.toString();
+		return CurrentVoteCounter.toString();
 	}
 
 	int nextTopicIndex = 0;
 	public void CalculateNextTopic()
 	{
-		// RANDOM TOPIC
-		Random random = new Random();
-
-		int next = 0;
-		next = random.nextInt(_topicPool.size());
-		CurrentTopic = _topicPool.get(next);
-		
-		// PREDEFINED TOPIC
-		//CurrentTopic = _topicPool.get(nextTopicIndex++);
+		CurrentTopic = CurrentVoteCounter.GetNextTopic(PlayerManager.GetNumberOfPlayers());
+		CurrentTopic.VisitTopic();
 	}
 
 	public void Exit() throws IOException

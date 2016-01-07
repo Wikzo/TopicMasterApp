@@ -22,4 +22,14 @@ public class NextCommand implements ICommand
 		topicManager.CurrentTopic = _previousTopic;
 	}
 
+	public static String ShowCommandToUser()
+	{
+		return "[n]ext";
+	}
+
+	public static String[] ValidCommands()
+	{
+		return new String[]{"next", "n"};
+	}
+
 }

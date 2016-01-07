@@ -12,7 +12,7 @@ public class ShowVotingResultsState implements IState
 {
 
 	public final String[] PossibleCommands =
-	{ InputHandler.NextCommandString, InputHandler.ExitCommandString, InputHandler.UndoCommandString};
+	{ NextCommand.ShowCommandToUser(), ExitCommand.ShowCommandToUser(), InputHandler.UndoCommandString};
 	
 
 	@Override

@@ -214,11 +214,16 @@ public class TopicContainer
 	public Topic Communism;
 	public Topic ThirdWorldWar;
 	public Topic RightWing;
-
-	public TopicContainer()
+	
+	public void CreateTopics()
 	{
 		InitializeTopics();
 		SetParentRelationship();
+	}
+	
+	public Topic GetStartingTopic()
+	{
+		return RootTopic.GetRandomKid();
 	}
 
 	private void SetParentRelationship()

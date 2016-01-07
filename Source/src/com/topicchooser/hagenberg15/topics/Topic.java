@@ -9,10 +9,9 @@ import javafx.scene.Parent;
 public class Topic
 {
 
-	public String TopicText = "Star Wars";
-	public String TagText = "Darth Vader";
+	public String TopicText = "[unitialized topic]";
 
-	protected VoteContainer _voteContainer;
+	protected VoteCounter _voteCounter;
 
 	protected boolean _hasBeenVisited;
 	public Topic Parent;
@@ -54,8 +53,6 @@ public class Topic
 			tries++;
 		}
 		
-		System.out.println(valid);
-		
 		if (!valid)
 			return GetRandomTopic();
 
@@ -64,7 +61,7 @@ public class Topic
 
 	protected Topic GetRandomTopic()
 	{
-		System.out.println("Getting RANDOM TOPIC!");
+		//System.out.println("Getting RANDOM TOPIC!");
 		Random random = new Random();
 		int index = random.nextInt(AllTopics.size());
 		return AllTopics.get(index);
@@ -120,9 +117,10 @@ public class Topic
 		AllTopics.add(this);
 	}
 
-	public void AssociateWithVotes(VoteContainer voteContainer)
+	// TODO: do we need this link? (memory considerations)
+	public void AssociateWithVotes(VoteCounter voteContainer)
 	{
-		this._voteContainer = voteContainer;
+		this._voteCounter = voteContainer;
 	}
 
 	@Override

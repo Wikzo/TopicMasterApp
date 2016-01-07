@@ -4,28 +4,32 @@ import java.io.IOException;
 
 import com.topicchooser.hagenberg15.topics.TopicManager;
 
-public class ExitCommand implements ICommand
+public class ShowResultsCommand implements ICommand
 {
+
 	@Override
 	public void Execute(TopicManager topicManager) throws IOException
 	{
-		topicManager.Exit();
+		System.out.println(topicManager.CurrentVoteCounter.toString());
+		
 	}
 
 	@Override
 	public void Undo(TopicManager topicManager)
 	{
-
+		
 	}
 
 	public static String ShowCommandToUser()
 	{
-		return "[e]xit";
+		return "[r]esults";
 	}
 
 	public static String[] ValidCommands()
 	{
-		return new String[]{"exit", "e"};
+		return new String[]{"results", "r"};
 	}
+
+
 
 }

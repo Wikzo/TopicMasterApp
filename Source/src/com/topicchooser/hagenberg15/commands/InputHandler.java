@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.StringReader;
+import java.util.Arrays;
 import java.util.Scanner;
 
 import com.topicchooser.hagenberg15.main.Main;
@@ -13,6 +14,10 @@ import com.topicchooser.hagenberg15.topics.TopicManager;
 
 public class InputHandler
 {
+
+	public static final String UndoCommandString = "[u]ndo";
+
+
 
 	public static void SetStoredInputs(String[] storedInputs)
 	{
@@ -25,10 +30,7 @@ public class InputHandler
 	private static int _storedInputIndex;
 	private static String[] _storedDummyInputs;
 
-	public final static String VoteCommandString = "[vote]";
-	public final static String NextCommandString = "[next]";
-	public final static String UndoCommandString = "[undo]";
-	public final static String ExitCommandString = "[exit]";
+
 
 	public static BufferedReader GetNextAvailableInput()
 	{
@@ -79,7 +81,18 @@ public class InputHandler
 
 		ICommand command = null;
 
-		if (input.equals("vote"))
+		if (Arrays.asList(VoteCommand.ValidCommands()).contains(input))
+			command = new VoteCommand();
+		else if (Arrays.asList(NextCommand.ValidCommands()).contains(input))
+			command = new NextCommand();
+		else if ((input.equals("u") || input.equals("undo"))  && _previousCommand != null)
+			_previousCommand.Undo(topicManager);
+		else if (Arrays.asList(ExitCommand.ValidCommands()).contains(input))
+			command = new ExitCommand();
+		else
+			System.out.println("ERROR: invalid input command. Please try again!\n\n");
+		
+		/*if (input.equals("vote"))
 			command = new VoteCommand();
 		else if (input.equals("next"))
 			command = new NextCommand();
@@ -88,7 +101,7 @@ public class InputHandler
 		else if (input.equals("exit"))
 			command = new ExitCommand();
 		else
-			System.out.println("ERROR: invalid input command. Please try again!\n\n");
+			System.out.println("ERROR: invalid input command. Please try again!\n\n");*/
 
 		_previousCommand = command;
 
@@ -112,13 +125,21 @@ public class InputHandler
 
 	public static int GetPositiveNumber() throws IOException
 	{
-		int number = 0;
-
+		// TODO: parsing is not fail proof
+		
 		System.out.println("Enter a number:");
 		String input = GetNextInput();
-
+		
+		Integer number = null;
 		number = TryParse(input);
-
+		
+		while (number == null || number <= 0)
+		{
+			System.out.println("That's not a valid input. Please enter a positive integer:");
+			input = GetNextInput();
+			number = TryParse(input);
+		}
+		
 		return number;
 	}
 

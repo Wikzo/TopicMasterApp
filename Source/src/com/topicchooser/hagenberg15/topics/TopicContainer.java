@@ -2,23 +2,23 @@ package com.topicchooser.hagenberg15.topics;
 
 public class TopicContainer
 {
-	Topic RootTopic;
-
-	Topic Cat;
-	Topic Lion;
-	Topic Tiger;
-	Topic SnowTiger;
-	Topic ChineseCat;
-
-	Topic Dog;
-	Topic BigDogs;
-	Topic SmallDogs;
-	Topic GermanSherpard;
-	Topic Puddle;
-
-	Topic Movies;
-	Topic SciFi;
-	Topic Fantasy;
+	public Topic RootTopic;
+    
+	public Topic Cat;
+	public Topic Lion;
+	public Topic Tiger;
+	public Topic SnowTiger;
+	public Topic ChineseCat;
+    
+	public Topic Dog;
+	public Topic BigDogs;
+	public Topic SmallDogs;
+	public Topic GermanSherpard;
+	public Topic Puddle;
+    
+	public Topic Movies;
+	public Topic SciFi;
+	public Topic Fantasy;
 
 	public TopicContainer()
 	{

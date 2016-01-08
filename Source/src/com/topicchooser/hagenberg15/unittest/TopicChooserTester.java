@@ -1,5 +1,6 @@
 package com.topicchooser.hagenberg15.unittest;
 
+import java.lang.reflect.Field;
 import java.util.Arrays;
 
 import org.junit.Assert;
@@ -7,6 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.topicchooser.hagenberg15.commands.VoteCommand;
+import com.topicchooser.hagenberg15.topics.ITopicContainer;
 import com.topicchooser.hagenberg15.topics.Topic;
 import com.topicchooser.hagenberg15.topics.TopicContainer;
 import com.topicchooser.hagenberg15.topics.VoteCounter;
@@ -180,6 +182,25 @@ public class TopicChooserTester
 		Assert.assertNotNull(t);
 	}
 
-	// TODO: test that all topics have been initialized!
+	@Test
+	public void TestIfAllTopicsHaveBeenInitialized()
+	{
+		for (ITopicContainer topicContainer : TopicContainer.GetTopicContainers())
+		{
+			Field[] fields = topicContainer.getClass().getFields();
+			
+			for(Field field : fields)
+			{
+				String dataType = field.getType().getName();
+			      if (dataType.equals(Topic.class.getName()))
+			      {
+			    	  if (field == null)
+			    		  System.out.println(field.getName());
+			          //Assert.assertNotNull(field);
+			      }
+			}
+		}
+		
+	}
 
 }

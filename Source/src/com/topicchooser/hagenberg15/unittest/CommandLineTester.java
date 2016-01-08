@@ -52,10 +52,7 @@ public class CommandLineTester
 	@Test
 	public void TestInputCommands()
 	{
-		// https://stackoverflow.com/questions/8936141/java-how-to-compare-strings-with-string-arrays
-		
 		String[] commands = {"exit", "e"};
-		
 		String input = "e";
 		
 		boolean contains = false;

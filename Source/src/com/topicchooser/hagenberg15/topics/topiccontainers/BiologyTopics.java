@@ -6,6 +6,8 @@ import com.topicchooser.hagenberg15.topics.Topic;
 public class BiologyTopics implements ITopicContainer
 {
 
+	public String hej;
+	
 	// BIOLOGY LEVEL 1
 	public Topic Biology;
 
@@ -71,6 +73,7 @@ public class BiologyTopics implements ITopicContainer
 
 	}
 
+	public Topic hey;
 	@Override
 	public void SetParentRelationship(Topic superRootTopic)
 	{

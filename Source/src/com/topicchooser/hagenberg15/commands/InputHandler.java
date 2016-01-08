@@ -16,8 +16,10 @@ public class InputHandler
 {
 
 	public static final String UndoCommandString = "[u]ndo";
-
-
+	private static boolean _useStoredInput = false;
+	private static int _storedInputIndex;
+	private static String[] _storedDummyInputs;
+	private static ICommand _previousCommand = null;
 
 	public static void SetStoredInputs(String[] storedInputs)
 	{
@@ -25,12 +27,6 @@ public class InputHandler
 		_storedDummyInputs = storedInputs;
 		_storedInputIndex = 0;
 	}
-
-	private static boolean _useStoredInput = false;
-	private static int _storedInputIndex;
-	private static String[] _storedDummyInputs;
-
-
 
 	public static BufferedReader GetNextAvailableInput()
 	{
@@ -73,8 +69,6 @@ public class InputHandler
 
 		return s.toString();
 	}
-
-	private static ICommand _previousCommand = null;
 
 	public static ICommand HandleInput(TopicManager topicManager) throws IOException
 	{
@@ -136,23 +130,6 @@ public class InputHandler
 		return number;
 	}
 
-	public static int GetPositiveNumberOriginal()
-	{
-		Scanner sc = new Scanner(System.in);
-		int number;
-		do
-		{
-			System.out.println("Enter a number:");
-			while (!sc.hasNextInt())
-			{
-				System.out.println("That's not a number. Please enter again:");
-				sc.next();
-			}
-			number = sc.nextInt();
-		} while (number <= 0);
-
-		return number;
-	}
 
 	public static Integer TryParse(String text)
 	{
@@ -169,9 +146,6 @@ public class InputHandler
 	{
 		String input = GetNextInput();
 		return input;
-
-		// Scanner sc = new Scanner(System.in);
-		// return sc.nextLine();
 	}
 
 	public static char GetGenderChar()

@@ -77,4 +77,9 @@ public class TopicContainer
 		return SuperRootTopic.GetRandomKid();
 	}
 
+	public List<ITopicContainer> GetTopicContainers()
+	{
+		return _topicContainers;
+	}
+
 }

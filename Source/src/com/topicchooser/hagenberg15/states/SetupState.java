@@ -44,7 +44,6 @@ public class SetupState implements IState
 				topicManager.PlayerManager.SetupPlayers(_useDummyPlayers);
 			} catch (IOException e)
 			{
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		

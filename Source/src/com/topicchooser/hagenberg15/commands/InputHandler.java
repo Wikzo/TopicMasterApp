@@ -43,8 +43,6 @@ public class InputHandler
 
 		BufferedReader reader = GetNextAvailableInput();
 		String input = reader.readLine().toLowerCase();
-		
-		// TODO: prevent user from pressing enter multiple times
 
 		if (_useStoredInput)
 			System.out.println("\n>>> INPUT: " + input);
@@ -111,9 +109,7 @@ public class InputHandler
 	}
 
 	public static int GetPositiveNumber() throws IOException
-	{
-		// TODO: parsing is not fail proof
-		
+	{	
 		System.out.println("Enter a number:");
 		String input = GetNextInput();
 		

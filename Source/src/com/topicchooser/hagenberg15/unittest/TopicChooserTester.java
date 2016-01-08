@@ -1,7 +1,9 @@
 package com.topicchooser.hagenberg15.unittest;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -30,15 +32,9 @@ public class TopicChooserTester
 	{
 		TopicContainer = new TopicContainer();
 
-		TopicContainer
-		.AddTopic(new MovieTopics())
-		.AddTopic(new BiologyTopics())
-		.AddTopic(new TechnologyTopics())
-		.AddTopic(new TravellingTopics())
-		.AddTopic(new CountryTopics())
-		.AddTopic(new PoliticsTopics())
-		.AddTopic(new HistoryTopics())
-		;
+		TopicContainer.AddTopic(new MovieTopics()).AddTopic(new BiologyTopics()).AddTopic(new TechnologyTopics())
+				.AddTopic(new TravellingTopics()).AddTopic(new CountryTopics()).AddTopic(new PoliticsTopics())
+				.AddTopic(new HistoryTopics());
 
 		TopicContainer.CreateTopics();
 	}
@@ -183,24 +179,33 @@ public class TopicChooserTester
 	}
 
 	@Test
-	public void TestIfAllTopicsHaveBeenInitialized()
+	public void TestIfAllTopicsHaveBeenInitialized() throws IllegalArgumentException, IllegalAccessException
 	{
+		List<Field> invalidTopics = new ArrayList<>();
+
 		for (ITopicContainer topicContainer : TopicContainer.GetTopicContainers())
 		{
-			Field[] fields = topicContainer.getClass().getFields();
-			
-			for(Field field : fields)
+			Field[] fooFields = topicContainer.getClass().getDeclaredFields();
+
+			for (Field fooField : fooFields)
 			{
-				String dataType = field.getType().getName();
-			      if (dataType.equals(Topic.class.getName()))
-			      {
-			    	  if (field == null)
-			    		  System.out.println(field.getName());
-			          //Assert.assertNotNull(field);
-			      }
+				if (fooField.get(topicContainer) == null)
+					invalidTopics.add(fooField);
 			}
 		}
-		
+
+		int expected = 0;
+		int results = invalidTopics.size();
+
+		if (results > 0)
+		{
+			System.out.println("These topics have not been initialized:");
+			for (Field f : invalidTopics)
+				System.out.println(f);
+		}
+
+		Assert.assertEquals("Expect zero uninitialized topics", expected, results);
+
 	}
 
 }

@@ -25,9 +25,9 @@ public class ShowTopicState implements IState
 		if (input instanceof ExitCommand)
 			input.Execute(topicManager);
 
-		if (input instanceof VoteCommand) // and when time has passed...
+		if (input instanceof VoteCommand)
 		{
-			input.Execute(topicManager); // TODO: needs to return bool
+			input.Execute(topicManager);
 			return new ShowVotingResultsState();
 		}
 
@@ -54,12 +54,6 @@ public class ShowTopicState implements IState
 	{
 		InputHandler.ClearConsole();
 		System.out.println(EnterString);
-
-		// Update(topicManager);
-
-		// System.out.println(topicManager.GetCurrentState());
-
-		// TODO: TopicManager.CalculateNewTopic()
 
 		return EnterString;
 	}

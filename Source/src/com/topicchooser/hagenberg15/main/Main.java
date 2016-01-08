@@ -13,7 +13,7 @@ import com.topicchooser.hagenberg15.topics.TopicManager;
 
 public class Main
 {
-	private final static boolean _useStoredInput = true;
+	private final static boolean _useStoredInput = false;
 
 	public static void main(String[] args) throws IOException
 	{

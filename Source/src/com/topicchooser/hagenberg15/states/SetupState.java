@@ -3,7 +3,6 @@ package com.topicchooser.hagenberg15.states;
 import java.io.IOException;
 
 import com.topicchooser.hagenberg15.commands.ExitCommand;
-import com.topicchooser.hagenberg15.commands.VoteCommand;
 import com.topicchooser.hagenberg15.commands.ICommand;
 import com.topicchooser.hagenberg15.topics.TopicManager;
 

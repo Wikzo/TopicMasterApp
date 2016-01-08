@@ -7,15 +7,9 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.sun.xml.internal.ws.api.addressing.AddressingVersion.EPR;
-import com.topicchooser.hagenberg15.commands.ICommand;
-import com.topicchooser.hagenberg15.commands.InputHandler;
 import com.topicchooser.hagenberg15.main.Main;
 import com.topicchooser.hagenberg15.main.TopicChooserFacade;
 import com.topicchooser.hagenberg15.players.Player;
-import com.topicchooser.hagenberg15.players.PlayerManager;
-import com.topicchooser.hagenberg15.states.SetupState;
-import com.topicchooser.hagenberg15.topics.TopicManager;
 
 public class CommandLineTester
 {

@@ -7,7 +7,6 @@ import java.io.StringReader;
 import java.util.Arrays;
 import java.util.Scanner;
 
-import com.topicchooser.hagenberg15.main.Main;
 import com.topicchooser.hagenberg15.topics.TopicManager;
 
 // "Invoker"

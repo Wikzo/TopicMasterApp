@@ -1,10 +1,8 @@
 package com.topicchooser.hagenberg15.commands;
 
 import java.io.IOException;
-import java.util.Scanner;
-
 import com.topicchooser.hagenberg15.players.Player;
-import com.topicchooser.hagenberg15.states.ShowTopicState;
+import com.topicchooser.hagenberg15.players.PlayerManager;
 import com.topicchooser.hagenberg15.topics.TopicManager;
 import com.topicchooser.hagenberg15.topics.VoteCounter;
 
@@ -19,7 +17,7 @@ public class VoteCommand implements ICommand
 		
 		VoteCounter newVoteCounter = new VoteCounter(topicManager.CurrentTopic);
 
-		for (Player p : topicManager.PlayerManager.Players)
+		for (Player p : PlayerManager.Players)
 			CastVote(newVoteCounter, p, topicManager);
 
 		topicManager.CurrentVoteCounter = newVoteCounter;

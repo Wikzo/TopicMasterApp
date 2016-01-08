@@ -6,7 +6,6 @@ import com.topicchooser.hagenberg15.commands.ExitCommand;
 import com.topicchooser.hagenberg15.commands.VoteCommand;
 import com.topicchooser.hagenberg15.commands.ICommand;
 import com.topicchooser.hagenberg15.commands.InputHandler;
-import com.topicchooser.hagenberg15.commands.NextCommand;
 import com.topicchooser.hagenberg15.commands.ShowResultsCommand;
 import com.topicchooser.hagenberg15.topics.TopicManager;
 

@@ -1,19 +1,12 @@
 package com.topicchooser.hagenberg15.topics;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import java.util.PrimitiveIterator.OfDouble;
-
 import com.topicchooser.hagenberg15.commands.ICommand;
 import com.topicchooser.hagenberg15.commands.InputHandler;
-import com.topicchooser.hagenberg15.players.Player;
 import com.topicchooser.hagenberg15.players.PlayerManager;
 import com.topicchooser.hagenberg15.states.IState;
 import com.topicchooser.hagenberg15.states.SetupState;
 import com.topicchooser.hagenberg15.states.ShowTopicState;
-import com.topicchooser.hagenberg15.states.ShowVotingResultsState;
 import com.topicchooser.hagenberg15.topics.topiccontainers.BiologyTopics;
 import com.topicchooser.hagenberg15.topics.topiccontainers.CountryTopics;
 import com.topicchooser.hagenberg15.topics.topiccontainers.HistoryTopics;

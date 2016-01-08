@@ -2,14 +2,12 @@ package com.topicchooser.hagenberg15.unittest;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.topicchooser.hagenberg15.commands.VoteCommand;
 import com.topicchooser.hagenberg15.topics.ITopicContainer;
 import com.topicchooser.hagenberg15.topics.Topic;
 import com.topicchooser.hagenberg15.topics.TopicContainer;

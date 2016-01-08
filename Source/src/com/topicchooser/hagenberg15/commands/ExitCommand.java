@@ -25,7 +25,8 @@ public class ExitCommand implements ICommand
 
 	public static String[] ValidCommands()
 	{
-		return new String[]{"exit", "e"};
+		return new String[]
+		{ "exit", "e" };
 	}
 
 }

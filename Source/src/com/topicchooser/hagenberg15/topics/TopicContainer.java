@@ -1,9 +1,5 @@
 package com.topicchooser.hagenberg15.topics;
 
-import com.sun.corba.se.impl.oa.toa.TOAFactory;
-
-import sun.net.www.content.text.plain;
-
 public class TopicContainer
 {
 	// LEVEL 0

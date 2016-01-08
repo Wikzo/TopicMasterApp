@@ -15,14 +15,22 @@ public class Topic
 
 	protected boolean _hasBeenVisited;
 	public Topic Parent;
-	public List<Topic> _kids;
+	public List<Topic> Kids;
 
 	public static List<Topic> AllTopics = new ArrayList<>();
 	static int _visitedTopicsCounter;
+	
+	public Topic(String topicText)
+	{
+		this.TopicText = topicText;
+		this.Kids = new ArrayList<>();
+
+		AllTopics.add(this);
+	}
 
 	public Topic GetKid()
 	{
-		if (_kids.isEmpty())
+		if (Kids.isEmpty())
 			return GetSibling();
 
 		return GetRandomKid();
@@ -32,8 +40,6 @@ public class Topic
 	{
 		boolean valid = false;
 		int levels = 0;
-		
-		//valid = ValidateTopic(this.GetParent(levels).GetRandomKid());
 
 		return Parent.GetRandomKid();
 	}
@@ -47,21 +53,20 @@ public class Topic
 		while (!valid && tries < AllTopics.size())
 		{
 			Random random = new Random();
-			index = random.nextInt(_kids.size());
+			index = random.nextInt(Kids.size());
 			
-			valid = ValidateTopic(_kids.get(index));
+			valid = ValidateTopic(Kids.get(index));
 			tries++;
 		}
 		
 		if (!valid)
 			return GetRandomTopic();
 
-		return _kids.get(index);
+		return Kids.get(index);
 	}
 
 	protected Topic GetRandomTopic()
 	{
-		//System.out.println("Getting RANDOM TOPIC!");
 		Random random = new Random();
 		int index = random.nextInt(AllTopics.size());
 		return AllTopics.get(index);
@@ -100,7 +105,7 @@ public class Topic
 	public void SetParent(Topic kid)
 	{
 		kid.Parent = this;
-		_kids.add(kid);
+		Kids.add(kid);
 	}
 
 	public void VisitTopic()
@@ -109,19 +114,13 @@ public class Topic
 		_visitedTopicsCounter++;
 	}
 
-	public Topic(String topicText)
-	{
-		this.TopicText = topicText;
-		this._kids = new ArrayList<>();
-
-		AllTopics.add(this);
-	}
+	
 
 	// TODO: do we need this link? (memory considerations)
-	public void AssociateWithVotes(VoteCounter voteContainer)
+	/*public void AssociateWithVotes(VoteCounter voteContainer)
 	{
 		this._voteCounter = voteContainer;
-	}
+	}*/
 
 	@Override
 	public String toString()

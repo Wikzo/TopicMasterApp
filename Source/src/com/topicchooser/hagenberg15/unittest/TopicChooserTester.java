@@ -5,18 +5,20 @@ import java.util.Arrays;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import com.topicchooser.hagenberg15.commands.VoteCommand;
 import com.topicchooser.hagenberg15.topics.Topic;
 import com.topicchooser.hagenberg15.topics.TopicContainer;
 import com.topicchooser.hagenberg15.topics.VoteCounter;
 
-public class TopicTraversalTester
+public class TopicChooserTester
 {
 
 	VoteCounter VoteContainer;
 	TopicContainer TopicContainer;
 
 	@Before
-	public void SetupStuff()
+	public void Setup()
 	{
 		TopicContainer = new TopicContainer();
 		TopicContainer.CreateTopics();
@@ -107,7 +109,6 @@ public class TopicTraversalTester
 	public void TestMoodCalculatorWithPositiveVotes()
 	{
 		TopicContainer.Scifi.VisitTopic();
-		// Fantasy.VisitTopic();
 
 		VoteCounter voteContainer = new VoteCounter(TopicContainer.Scifi);
 
@@ -143,25 +144,7 @@ public class TopicTraversalTester
 		Topic startTopic = TopicContainer.GetStartingTopic();
 		String results = startTopic.toString();
 
-		boolean isCorrect = false;
-		if (results.equalsIgnoreCase(TopicContainer.Movies.toString()))
-			isCorrect = true;
-		if (results.equalsIgnoreCase(TopicContainer.Biology.toString()))
-			isCorrect = true;
-		if (results.equalsIgnoreCase(TopicContainer.Technology.toString()))
-			isCorrect = true;
-		if (results.equalsIgnoreCase(TopicContainer.Travelling.toString()))
-			isCorrect = true;
-		if (results.equalsIgnoreCase(TopicContainer.Countries.toString()))
-			isCorrect = true;
-		if (results.equalsIgnoreCase(TopicContainer.Politics.toString()))
-			isCorrect = true;
-		if (results.equalsIgnoreCase(TopicContainer.History.toString()))
-			isCorrect = true;
-		if (results.equalsIgnoreCase(TopicContainer.Religion.toString()))
-			isCorrect = true;
-		
-		Assert.assertTrue(isCorrect);
+		Assert.assertTrue(TopicContainer.RootTopic.Kids.contains(startTopic));
 		
 	}
 	

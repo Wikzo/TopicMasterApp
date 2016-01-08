@@ -3,11 +3,11 @@ package com.topicchooser.hagenberg15.topics;
 public class VoteCounter
 {
 
-	public int DidNotLikeIt;
+	public int DidNotLikeItVotes;
 	public int OkayVotes;
-	public int LikedIt;
+	public int LikedItVotes;
 
-	private int _numberOfVotes;
+	private int _totalNumberOfVotes;
 
 	protected Topic _topic;
 
@@ -16,15 +16,15 @@ public class VoteCounter
 		ResetAllVotes();
 
 		_topic = topic;
-		_topic.AssociateWithVotes(this);
+		//_topic.AssociateWithVotes(this);
 
 	}
 
 	public void ResetAllVotes()
 	{
-		DidNotLikeIt = 0;
+		DidNotLikeItVotes = 0;
 		OkayVotes = 0;
-		LikedIt = 0;
+		LikedItVotes = 0;
 	}
 
 	public void AddVote(int vote)
@@ -32,14 +32,14 @@ public class VoteCounter
 		if (vote != 1 && vote != 2 && vote != 3)
 			throw new RuntimeException("ERROR: votes can only be 1, 2, or 3!");
 
-		_numberOfVotes++;
+		_totalNumberOfVotes++;
 
 		if (vote == 1)
-			DidNotLikeIt++;
+			DidNotLikeItVotes++;
 		else if (vote == 2)
 			OkayVotes++;
 		else if (vote == 3)
-			LikedIt++;
+			LikedItVotes++;
 	}
 
 	public Topic GetNextTopic(int numberOfPlayers)
@@ -51,10 +51,10 @@ public class VoteCounter
 
 	public float CalculateMood(int numberOfPlayers)
 	{
-		if (_numberOfVotes != numberOfPlayers)
+		if (_totalNumberOfVotes != numberOfPlayers)
 			throw new RuntimeException("ERROR: number of players are not correct!");
 
-		float numerator = (DidNotLikeIt * 0) + (OkayVotes * 50) + (LikedIt * 100);
+		float numerator = (DidNotLikeItVotes * 0) + (OkayVotes * 50) + (LikedItVotes * 100);
 		float denominator = numberOfPlayers;
 
 		float avgMean = numerator / denominator;
@@ -77,7 +77,7 @@ public class VoteCounter
 	@Override
 	public String toString()
 	{
-		return "Did not like it: " + DidNotLikeIt + "\nWas okay: " + OkayVotes + "\nLiked it a lot: "
-				+ LikedIt;
+		return "Did not like it: " + DidNotLikeItVotes + "\nWas okay: " + OkayVotes + "\nLiked it a lot: "
+				+ LikedItVotes;
 	}
 }

@@ -55,7 +55,7 @@ public class VoteCommand implements ICommand
 			System.out.println("\n[Undoing previous vote...]\n");
 			topicManager.CurrentVoteCounter = _previousVoteCounter;
 			
-			topicManager.ChangeState(topicManager.GetPreviousState());
+			topicManager.ChangeStateManually(topicManager.GetPreviousState());
 		}
 	}
 

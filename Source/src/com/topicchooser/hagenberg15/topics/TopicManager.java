@@ -71,14 +71,14 @@ public class TopicManager
 		IState temp = _state.HandleInput(command, this);
 
 		if (temp != _state)	
-			ChangeState(temp);
+			ChangeStateManually(temp);
 		
 		stateString = _state.EnterState(this);
 
 		return stateString;
 	}
 	
-	public void ChangeState(IState state)
+	public void ChangeStateManually(IState state)
 	{
 		_previousState = _state;
 		
@@ -91,14 +91,13 @@ public class TopicManager
 		return CurrentTopic.TopicText;
 	}
 
-	public String DisplayCurrentVotes()
+	public String DisplayCurrentMood()
 	{
 		String mood = Float.toString(CurrentVoteCounter.CalculateMood(PlayerManager.GetNumberOfPlayers()));
 		String topicText = "Overall mood for " + CurrentTopic.toString();
 		return topicText + " was " + mood + "%";
 	}
 
-	int nextTopicIndex = 0;
 	public void CalculateNextTopic()
 	{
 		CurrentTopic = CurrentVoteCounter.GetNextTopic(PlayerManager.GetNumberOfPlayers());

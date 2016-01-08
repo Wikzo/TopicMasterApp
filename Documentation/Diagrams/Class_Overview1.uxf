@@ -4,8 +4,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>170</x>
-      <y>60</y>
+      <x>290</x>
+      <y>130</y>
       <w>180</w>
       <h>80</h>
     </coordinates>
@@ -14,14 +14,15 @@ ICommand
 --
 Execute(TopicManager t)
 Undo(TopicManager t)
-bg=white</panel_attributes>
+bg=white
+group=4</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>420</x>
-      <y>30</y>
+      <x>540</x>
+      <y>100</y>
       <w>280</w>
       <h>170</h>
     </coordinates>
@@ -36,86 +37,93 @@ boolean GetYesOrNo()
 int GetPositiveNumber()
 char GetGenderChar()
 
-bg=white</panel_attributes>
+bg=white
+group=4</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>240</x>
-      <y>250</y>
+      <x>360</x>
+      <y>320</y>
       <w>140</w>
       <h>40</h>
     </coordinates>
     <panel_attributes>NextCommand
-bg=white</panel_attributes>
+bg=white
+group=4</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>70</x>
-      <y>250</y>
+      <x>190</x>
+      <y>320</y>
       <w>140</w>
       <h>40</h>
     </coordinates>
     <panel_attributes>VoteCommand
-bg=white</panel_attributes>
+bg=white
+group=4</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>130</x>
-      <y>130</y>
+      <x>250</x>
+      <y>200</y>
       <w>140</w>
       <h>140</h>
     </coordinates>
-    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <panel_attributes>lt=&lt;&lt;.
+group=4</panel_attributes>
     <additional_attributes>120.0;10.0;120.0;90.0;10.0;90.0;10.0;120.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>240</x>
-      <y>130</y>
+      <x>360</x>
+      <y>200</y>
       <w>90</w>
       <h>140</h>
     </coordinates>
-    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <panel_attributes>lt=&lt;&lt;.
+group=4</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;90.0;70.0;90.0;70.0;120.0</additional_attributes>
   </element>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>60</x>
-      <y>10</y>
+      <x>180</x>
+      <y>80</y>
       <w>680</w>
       <h>310</h>
     </coordinates>
     <panel_attributes>COMMANDS
 layer=-1
-bg=green</panel_attributes>
+bg=green
+group=4</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>870</x>
-      <y>0</y>
+      <x>170</x>
+      <y>430</y>
       <w>560</w>
       <h>240</h>
     </coordinates>
     <panel_attributes>STATES
 bg=blue
-layer=-1</panel_attributes>
+layer=-1
+group=3</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1040</x>
-      <y>20</y>
+      <x>340</x>
+      <y>450</y>
       <w>360</w>
       <h>110</h>
     </coordinates>
@@ -126,14 +134,15 @@ IState HandleInput(ICommand input, TopicManager t)
 String Update(TopicManager t)
 String EnterState(TopicManager t)
 String ExitState(TopicManager t)
-bg=white</panel_attributes>
+bg=white
+group=3</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>510</x>
-      <y>660</y>
+      <x>1130</x>
+      <y>510</y>
       <w>340</w>
       <h>230</h>
     </coordinates>
@@ -143,111 +152,126 @@ TopicManager
 PlayerManager PlayerManager
 VoteCounter CurrentVoteCounter
 Topic CurrentTopic
+TopicContainer TopicContainer
 --
 String Update()
-String HandleInputAndState(ICommand command)
-Topic CalculateNextTopic()
 String GetCurrentState()
-String DisplayCurrentVotes()
+IState GetPreviousState()
+String HandleInputAndState(ICommand command)
+void ChangeStateManually(IState state)
 String DisplayCurrentTopic()
+String DisplayCurrentMood()
+void CalculateNextTopic()
 void Exit()
 
-bg=white</panel_attributes>
+bg=white
+group=1</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>140</x>
-      <y>640</y>
+      <x>760</x>
+      <y>490</y>
       <w>1100</w>
       <h>350</h>
     </coordinates>
     <panel_attributes>TOPICS
 bg=orange
-layer=-2</panel_attributes>
+layer=-2
+group=1</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>880</x>
-      <y>180</y>
+      <x>180</x>
+      <y>610</y>
       <w>100</w>
       <h>30</h>
     </coordinates>
     <panel_attributes>SetupState
-bg=white</panel_attributes>
+bg=white
+group=3</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1020</x>
-      <y>180</y>
+      <x>320</x>
+      <y>610</y>
       <w>150</w>
       <h>30</h>
     </coordinates>
     <panel_attributes>ShowTopicState
-bg=white</panel_attributes>
+bg=white
+group=3</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>920</x>
-      <y>120</y>
+      <x>220</x>
+      <y>550</y>
       <w>310</w>
       <h>80</h>
     </coordinates>
-    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <panel_attributes>lt=&lt;&lt;.
+group=3</panel_attributes>
     <additional_attributes>290.0;10.0;290.0;40.0;10.0;40.0;10.0;60.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1060</x>
-      <y>120</y>
+      <x>360</x>
+      <y>550</y>
       <w>170</w>
       <h>80</h>
     </coordinates>
-    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <panel_attributes>lt=&lt;&lt;.
+group=3</panel_attributes>
     <additional_attributes>150.0;10.0;150.0;40.0;10.0;40.0;10.0;60.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>190</x>
-      <y>660</y>
+      <x>810</x>
+      <y>510</y>
       <w>210</w>
-      <h>120</h>
+      <h>130</h>
     </coordinates>
     <panel_attributes>Player
 --
+int PlayerID
 String Name
-char Gender
 int Age
-bg=white</panel_attributes>
+char Gender
+--
+void Initializeplayer()
+
+bg=white
+group=1</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>390</x>
-      <y>710</y>
+      <x>1010</x>
+      <y>560</y>
       <w>140</w>
       <h>40</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m1=*
-m2=1</panel_attributes>
+m2=1
+group=1</panel_attributes>
     <additional_attributes>10.0;10.0;120.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>0</x>
-      <y>1020</y>
+      <x>900</x>
+      <y>860</y>
       <w>950</w>
       <h>520</h>
     </coordinates>
@@ -259,31 +283,33 @@ bg=dark_gray</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>240</x>
-      <y>130</y>
+      <x>360</x>
+      <y>200</y>
       <w>260</w>
       <h>140</h>
     </coordinates>
-    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <panel_attributes>lt=&lt;&lt;.
+group=4</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;90.0;240.0;90.0;240.0;120.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>400</x>
-      <y>250</y>
+      <x>520</x>
+      <y>320</y>
       <w>170</w>
       <h>40</h>
     </coordinates>
     <panel_attributes>ExitCommand
-bg=white</panel_attributes>
+bg=white
+group=4</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>910</x>
-      <y>660</y>
+      <x>1530</x>
+      <y>510</y>
       <w>320</w>
       <h>200</h>
     </coordinates>
@@ -296,50 +322,55 @@ String SetupPlayers(bool useDummyPlayers)
 String DisplayCurrentPlayers()
 void AddPlayers(int number)
 int ValidatePlayerNumber(int number)
-Player[] CreateDussmmyPlayers()
+int GetNumberOfPlayers()
+Player[] CreateDummyPlayers()
 
-bg=white</panel_attributes>
+bg=white
+group=1</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>840</x>
-      <y>750</y>
+      <x>1460</x>
+      <y>600</y>
       <w>90</w>
       <h>30</h>
     </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+group=1</panel_attributes>
     <additional_attributes>70.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1190</x>
-      <y>180</y>
+      <x>490</x>
+      <y>610</y>
       <w>170</w>
       <h>30</h>
     </coordinates>
     <panel_attributes>ShowVotingResultsState
-bg=white</panel_attributes>
+bg=white
+group=3</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1200</x>
-      <y>120</y>
+      <x>500</x>
+      <y>550</y>
       <w>100</w>
       <h>80</h>
     </coordinates>
-    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <panel_attributes>lt=&lt;&lt;.
+group=3</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;40.0;80.0;40.0;80.0;60.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1100</x>
-      <y>360</y>
+      <x>1200</x>
+      <y>110</y>
       <w>210</w>
       <h>190</h>
     </coordinates>
@@ -353,14 +384,15 @@ ICommand Command
 --
 void Run()
 void UpdateNextStep()
-bg=white</panel_attributes>
+bg=white
+group=2</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>810</x>
-      <y>380</y>
+      <x>910</x>
+      <y>130</y>
       <w>210</w>
       <h>120</h>
     </coordinates>
@@ -372,67 +404,70 @@ bool UseStoredInput
 String[] StoredInputs
 --
 main()
-bg=white</panel_attributes>
+bg=white
+group=2</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>780</x>
-      <y>300</y>
-      <w>940</w>
-      <h>300</h>
+      <x>880</x>
+      <y>20</y>
+      <w>990</w>
+      <h>450</h>
     </coordinates>
     <panel_attributes>MAIN LOOP &amp; UNIT TESTING
 layer=-1
-bg=magenta</panel_attributes>
+bg=magenta
+group=2</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1400</x>
-      <y>290</y>
+      <x>1500</x>
+      <y>40</y>
       <w>210</w>
       <h>150</h>
     </coordinates>
     <panel_attributes>&lt;&lt;UnitTester&gt;&gt;
-TopicUnitTester
+CommandLineTester
 --
 TopicChooserFacade Facade
 --
-Setup()
-TestPlayerNames()
-UpdateWithStoredInputs()
-CheckFalseTopic()
+void Setup()
+void TestPlayerNames()
+void TestInputCommands()
 
-bg=white</panel_attributes>
+bg=white
+group=2</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1010</x>
-      <y>430</y>
+      <x>1110</x>
+      <y>180</y>
       <w>110</w>
       <h>30</h>
     </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+group=2</panel_attributes>
     <additional_attributes>90.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>10</x>
-      <y>1160</y>
+      <x>910</x>
+      <y>1000</y>
       <w>220</w>
       <h>150</h>
     </coordinates>
     <panel_attributes>TopicContainer
 --
 List&lt;Topic&gt; Topics
-void InitializeTopics
-void SetParentRelationship
+void InitializeTopics()
+void SetParentRelationship()
 
 bg=white</panel_attributes>
     <additional_attributes/>
@@ -440,23 +475,24 @@ bg=white</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>690</x>
-      <y>1140</y>
-      <w>210</w>
-      <h>180</h>
+      <x>1540</x>
+      <y>980</y>
+      <w>300</w>
+      <h>210</h>
     </coordinates>
     <panel_attributes>VoteCounter
 --
 Topic Topic
-int HateVotes;
+int DidNotLikeItVotes;
 int OkayVotes;
-int LoveVotes;
+int LikedItVotes;
 int NumberOfVotes;
 --
 void ResetAllVotes()
-void AddVote()
-GetNextTopic()
-MoodCalculator()
+void AddVote(int vote)
+Topic GetNextTopic(int numberOfPlayers)
+float CalculateMood(int numberOfPlayers
+Topic MoodAnalyzer(float mood)
 
 bg=white</panel_attributes>
     <additional_attributes/>
@@ -464,104 +500,152 @@ bg=white</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>580</x>
-      <y>1230</y>
-      <w>130</w>
+      <x>1500</x>
+      <y>1070</y>
+      <w>60</w>
       <h>40</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m2=1</panel_attributes>
-    <additional_attributes>110.0;10.0;10.0;10.0</additional_attributes>
+    <additional_attributes>40.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>370</x>
-      <y>1150</y>
-      <w>220</w>
-      <h>240</h>
+      <x>1230</x>
+      <y>990</y>
+      <w>280</w>
+      <h>260</h>
     </coordinates>
     <panel_attributes>Topic
 --
+String TopicText;
 bool HasBeenVisited;
+Topic Parent
 List&lt;Topic&gt; Kids
-List&lt;Topic&gt; AllTopics 
+&lt;&lt;static&gt;&gt; List&lt;Topic&gt; AllTopics 
 --
 GetKid()
 GetSibling()
 GetRandomKid()
 GetRandomTopic()
-GetParent()
-ValidateTopic()
-SetParent()
+GetParent(int levelsToGoUp)
+bool ValidateTopic(Topic topic)
+SetParent(Topic kid)
 VisitTopic()
-AssociateWithVotes()
-
 bg=white</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>220</x>
-      <y>710</y>
-      <w>310</w>
-      <h>540</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
-m2=1</panel_attributes>
-    <additional_attributes>10.0;520.0;90.0;520.0;90.0;140.0;260.0;140.0;260.0;10.0;290.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>220</x>
-      <y>1270</y>
-      <w>170</w>
+      <x>1120</x>
+      <y>1110</y>
+      <w>130</w>
       <h>30</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 fg=black
 bg=black</panel_attributes>
-    <additional_attributes>10.0;10.0;150.0;10.0</additional_attributes>
+    <additional_attributes>10.0;10.0;110.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1400</x>
-      <y>450</y>
-      <w>210</w>
-      <h>150</h>
+      <x>1500</x>
+      <y>200</y>
+      <w>320</w>
+      <h>250</h>
     </coordinates>
     <panel_attributes>&lt;&lt;UnitTester&gt;&gt;
-TopicTraversalTester
+TopicChooserTester
 --
-TOPICCONTAINER
+VoteContainer VoteContainer
+TopicContainer TopicContainer
 --
+void Setup()
+void TestKidWithNoSibling()
+void TestGettingEmptyKid()
+void TestGetParentOneLevel()
+void TestGetParentThreeLevels()
+void TestMoodCalculatorWithNegativeVotes()
+void TestMoodCalculatorWithPositiveVotes()
+void TestGetParentRecursionWithOneLevel()
+void TestGetParentRecursionWithOneLevel()
 
-bg=white</panel_attributes>
+bg=white
+group=2</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1300</x>
-      <y>350</y>
+      <x>1400</x>
+      <y>100</y>
       <w>120</w>
       <h>100</h>
     </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+group=2</panel_attributes>
     <additional_attributes>100.0;10.0;60.0;10.0;60.0;80.0;10.0;80.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1300</x>
-      <y>420</y>
+      <x>1400</x>
+      <y>170</y>
       <w>120</w>
       <h>120</h>
     </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+group=2</panel_attributes>
     <additional_attributes>100.0;100.0;60.0;100.0;60.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1060</x>
+      <y>560</y>
+      <w>150</w>
+      <h>520</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>70.0;500.0;130.0;500.0;130.0;240.0;10.0;240.0;10.0;10.0;70.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>90</x>
+      <y>450</y>
+      <w>140</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>NEEDS TO BE LOOKED AT
+bg=red</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>80</x>
+      <y>100</y>
+      <w>140</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>NEEDS TO BE LOOKED AT
+bg=red</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>840</x>
+      <y>0</y>
+      <w>140</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>NEEDS TO BE LOOKED AT
+bg=red</panel_attributes>
+    <additional_attributes/>
   </element>
 </diagram>

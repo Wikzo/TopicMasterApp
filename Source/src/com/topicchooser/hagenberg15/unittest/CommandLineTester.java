@@ -17,7 +17,7 @@ import com.topicchooser.hagenberg15.players.PlayerManager;
 import com.topicchooser.hagenberg15.states.SetupState;
 import com.topicchooser.hagenberg15.topics.TopicManager;
 
-public class MainTester
+public class CommandLineTester
 {
 
 	TopicChooserFacade facade;

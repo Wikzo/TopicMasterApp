@@ -27,22 +27,17 @@ public class TopicManager
 	public PlayerManager PlayerManager;
 	public VoteCounter CurrentVoteCounter;
 	public Topic CurrentTopic;
-	// public TopicContainer TopicContainer;
 
-	private TopicContainer _topicContainerBase;
+	private TopicContainer _topicContainer;
 
 	private IState _state;
 	private IState _previousState;
 
 	public TopicManager(PlayerManager playerManager, boolean useDummyPlayers)
 	{
-		// TopicContainer = new TopicContainer();
-		// TopicContainer.CreateTopics();
-		// CurrentTopic = TopicContainer.GetStartingTopic();
-
-		_topicContainerBase = new TopicContainer();
+		_topicContainer = new TopicContainer();
 		
-		_topicContainerBase
+		_topicContainer
 		.AddTopic(new MovieTopics())
 		.AddTopic(new BiologyTopics())
 		.AddTopic(new TechnologyTopics())
@@ -52,8 +47,8 @@ public class TopicManager
 		.AddTopic(new HistoryTopics())
 		;
 		
-		_topicContainerBase.CreateTopics();
-		CurrentTopic = _topicContainerBase.GetStartingTopic();
+		_topicContainer.CreateTopics();
+		CurrentTopic = _topicContainer.GetStartingTopic();
 
 		CurrentTopic.VisitTopic();
 

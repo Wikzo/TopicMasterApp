@@ -17,7 +17,6 @@ public class TopicContainer
 
 	public TopicContainer AddTopic(ITopicContainer topicContainer)
 	{
-
 		if (GetTopicContainerInternalLookup(topicContainer.getClass()) != null)
 			throw new RuntimeException(
 					"ERROR - cannot add " + topicContainer.getClass().getSimpleName() + " multiple times!");
@@ -26,7 +25,6 @@ public class TopicContainer
 
 		return this;
 	}
-
 
 	public <T extends ITopicContainer> T GetTopicContainerInternalLookup(Class<T> clazz)
 	{

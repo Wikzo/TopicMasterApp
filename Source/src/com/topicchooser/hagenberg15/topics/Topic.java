@@ -114,8 +114,6 @@ public class Topic
 		_visitedTopicsCounter++;
 	}
 
-	
-
 	// TODO: do we need this link? (memory considerations)
 	/*public void AssociateWithVotes(VoteCounter voteContainer)
 	{

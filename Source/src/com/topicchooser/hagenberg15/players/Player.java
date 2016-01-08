@@ -20,9 +20,9 @@ public class Player
 	public void Initializeplayer() throws IOException
 	{
 		System.out.println("\nPlease tell me the name of player " + PlayerID + ":");
-		Name = InputHandler.GetNextString();
+		Name = InputHandler.GetNextString().toUpperCase();
 
-		System.out.println("\nHowdy, " + Name + ". Please tell me your age:");
+		System.out.println("\nHi there, " + Name + ". Please tell me your age:");
 		Age = InputHandler.GetPositiveNumber();
 
 		System.out.println("\nOh, and " + Name + ", would you mind telling me your gender as well:");

@@ -11,7 +11,6 @@ public class ShowResultsCommand implements ICommand
 	public void Execute(TopicManager topicManager) throws IOException
 	{
 		System.out.println(topicManager.CurrentVoteCounter.toString());
-		
 	}
 
 	@Override

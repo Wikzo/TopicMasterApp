@@ -23,7 +23,7 @@ public class Main
 			facade = new TopicChooserFacade(StoredInput());
 		else
 			facade = new TopicChooserFacade(null);
-		
+
 		facade.Run();
 	}
 

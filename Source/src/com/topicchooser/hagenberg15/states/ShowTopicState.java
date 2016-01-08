@@ -21,7 +21,6 @@ public class ShowTopicState implements IState
 	@Override
 	public IState HandleInput(ICommand input, TopicManager topicManager) throws IOException
 	{
-
 		if (input instanceof ExitCommand)
 			input.Execute(topicManager);
 
@@ -41,9 +40,7 @@ public class ShowTopicState implements IState
 	public String Update(TopicManager topicManager)
 	{
 		String currentTopic = "CURRENT TOPIC: " + topicManager.DisplayCurrentTopic() + "\n";
-
 		System.out.println(currentTopic);
-
 		InputHandler.DisplayPossibleCommands(PossibleCommands);
 
 		return currentTopic;

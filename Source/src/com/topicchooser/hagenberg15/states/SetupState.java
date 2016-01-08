@@ -43,7 +43,7 @@ public class SetupState implements IState
 			{
 				topicManager.PlayerManager.SetupPlayers(_useDummyPlayers);
 			} catch (IOException e)
-			{
+			{	
 				e.printStackTrace();
 			}
 		

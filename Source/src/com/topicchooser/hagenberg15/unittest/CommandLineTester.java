@@ -19,7 +19,6 @@ import com.topicchooser.hagenberg15.topics.TopicManager;
 
 public class CommandLineTester
 {
-
 	TopicChooserFacade facade;
 
 	public static String[] StoredInput()
@@ -47,7 +46,6 @@ public class CommandLineTester
 
 		Assert.assertEquals(expected, facade.PlayerManager.DisplayCurrentPlayers());
 	}
-	
 	
 	@Test
 	public void TestInputCommands()

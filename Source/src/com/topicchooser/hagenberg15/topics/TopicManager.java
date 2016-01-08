@@ -14,24 +14,49 @@ import com.topicchooser.hagenberg15.states.IState;
 import com.topicchooser.hagenberg15.states.SetupState;
 import com.topicchooser.hagenberg15.states.ShowTopicState;
 import com.topicchooser.hagenberg15.states.ShowVotingResultsState;
+import com.topicchooser.hagenberg15.topics.topiccontainers.BiologyTopics;
+import com.topicchooser.hagenberg15.topics.topiccontainers.CountryTopics;
+import com.topicchooser.hagenberg15.topics.topiccontainers.HistoryTopics;
+import com.topicchooser.hagenberg15.topics.topiccontainers.MovieTopics;
+import com.topicchooser.hagenberg15.topics.topiccontainers.PoliticsTopics;
+import com.topicchooser.hagenberg15.topics.topiccontainers.TechnologyTopics;
+import com.topicchooser.hagenberg15.topics.topiccontainers.TravellingTopics;
 
 public class TopicManager
 {
 	public PlayerManager PlayerManager;
 	public VoteCounter CurrentVoteCounter;
 	public Topic CurrentTopic;
-	public TopicContainer TopicContainer;
+	// public TopicContainer TopicContainer;
+
+	private TopicContainer _topicContainerBase;
 
 	private IState _state;
 	private IState _previousState;
 
 	public TopicManager(PlayerManager playerManager, boolean useDummyPlayers)
 	{
-		TopicContainer = new TopicContainer();
-		TopicContainer.CreateTopics();
-		CurrentTopic = TopicContainer.GetStartingTopic();
-		CurrentTopic.VisitTopic();
+		// TopicContainer = new TopicContainer();
+		// TopicContainer.CreateTopics();
+		// CurrentTopic = TopicContainer.GetStartingTopic();
+
+		_topicContainerBase = new TopicContainer();
 		
+		_topicContainerBase
+		.AddTopic(new MovieTopics())
+		.AddTopic(new BiologyTopics())
+		.AddTopic(new TechnologyTopics())
+		.AddTopic(new TravellingTopics())
+		.AddTopic(new CountryTopics())
+		.AddTopic(new PoliticsTopics())
+		.AddTopic(new HistoryTopics())
+		;
+		
+		_topicContainerBase.CreateTopics();
+		CurrentTopic = _topicContainerBase.GetStartingTopic();
+
+		CurrentTopic.VisitTopic();
+
 		this.PlayerManager = playerManager;
 
 		CurrentVoteCounter = new VoteCounter(CurrentTopic);
@@ -50,16 +75,17 @@ public class TopicManager
 		if (_state != null)
 		{
 			stateString = _state.Update(this);
-			//System.out.println("(Current state: " + GetCurrentState() + " [debug])");
+			// System.out.println("(Current state: " + GetCurrentState() + "
+			// [debug])");
 		}
 		return stateString;
 	}
-	
+
 	public String GetCurrentState()
 	{
-		return  _state.getClass().getSimpleName();
+		return _state.getClass().getSimpleName();
 	}
-	
+
 	public IState GetPreviousState()
 	{
 		return _previousState;
@@ -70,18 +96,18 @@ public class TopicManager
 		String stateString = "";
 		IState temp = _state.HandleInput(command, this);
 
-		if (temp != _state)	
+		if (temp != _state)
 			ChangeStateManually(temp);
-		
+
 		stateString = _state.EnterState(this);
 
 		return stateString;
 	}
-	
+
 	public void ChangeStateManually(IState state)
 	{
 		_previousState = _state;
-		
+
 		_state.ExitState(this);
 		_state = state;
 	}

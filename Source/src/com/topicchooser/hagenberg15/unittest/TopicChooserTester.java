@@ -10,10 +10,16 @@ import com.topicchooser.hagenberg15.commands.VoteCommand;
 import com.topicchooser.hagenberg15.topics.Topic;
 import com.topicchooser.hagenberg15.topics.TopicContainer;
 import com.topicchooser.hagenberg15.topics.VoteCounter;
+import com.topicchooser.hagenberg15.topics.topiccontainers.BiologyTopics;
+import com.topicchooser.hagenberg15.topics.topiccontainers.CountryTopics;
+import com.topicchooser.hagenberg15.topics.topiccontainers.HistoryTopics;
+import com.topicchooser.hagenberg15.topics.topiccontainers.MovieTopics;
+import com.topicchooser.hagenberg15.topics.topiccontainers.PoliticsTopics;
+import com.topicchooser.hagenberg15.topics.topiccontainers.TechnologyTopics;
+import com.topicchooser.hagenberg15.topics.topiccontainers.TravellingTopics;
 
 public class TopicChooserTester
 {
-
 	VoteCounter VoteContainer;
 	TopicContainer TopicContainer;
 
@@ -21,19 +27,28 @@ public class TopicChooserTester
 	public void Setup()
 	{
 		TopicContainer = new TopicContainer();
+
+		TopicContainer
+		.AddTopic(new MovieTopics())
+		.AddTopic(new BiologyTopics())
+		.AddTopic(new TechnologyTopics())
+		.AddTopic(new TravellingTopics())
+		.AddTopic(new CountryTopics())
+		.AddTopic(new PoliticsTopics())
+		.AddTopic(new HistoryTopics())
+		;
+
 		TopicContainer.CreateTopics();
 	}
 
-	
-	
 	@Test
 	public void TestKidWithNoSibling()
 	{
 
-		String expected = TopicContainer.ChineseDogs.toString();
+		String expected = TopicContainer.GetTopicContainer(BiologyTopics.class).ChineseDogs.toString();
 		String results = "";
 
-		results = TopicContainer.Dogs.GetKid().toString();
+		results = TopicContainer.GetTopicContainer(BiologyTopics.class).Dogs.GetKid().toString();
 
 		Assert.assertEquals(expected, results);
 	}
@@ -42,15 +57,16 @@ public class TopicChooserTester
 	public void TestGettingEmptyKid()
 	{
 		String[] expected =
-		{ TopicContainer.Cats.toString(), TopicContainer.Dogs.toString() };
+		{ TopicContainer.GetTopicContainer(BiologyTopics.class).Cats.toString(),
+				TopicContainer.GetTopicContainer(BiologyTopics.class).Dogs.toString() };
 		String results = "";
 
-		results = TopicContainer.Cats.GetKid().toString();
+		results = TopicContainer.GetTopicContainer(BiologyTopics.class).Cats.GetKid().toString();
 
 		boolean isCorrect = false;
-		if (results.equalsIgnoreCase(TopicContainer.Cats.toString()))
+		if (results.equalsIgnoreCase(TopicContainer.GetTopicContainer(BiologyTopics.class).Cats.toString()))
 			isCorrect = true;
-		if (results.equalsIgnoreCase(TopicContainer.Dogs.toString()))
+		if (results.equalsIgnoreCase(TopicContainer.GetTopicContainer(BiologyTopics.class).Dogs.toString()))
 			isCorrect = true;
 
 		Assert.assertTrue(isCorrect);
@@ -59,10 +75,10 @@ public class TopicChooserTester
 	@Test
 	public void TestGetParentOneLevel()
 	{
-		String expected = TopicContainer.Dogs.toString();
+		String expected = TopicContainer.GetTopicContainer(BiologyTopics.class).Dogs.toString();
 		String results = "";
 
-		results = TopicContainer.ChineseDogs.GetParent(1).toString();
+		results = TopicContainer.GetTopicContainer(BiologyTopics.class).ChineseDogs.GetParent(1).toString();
 
 		Assert.assertEquals(expected, results);
 	}
@@ -70,10 +86,10 @@ public class TopicChooserTester
 	@Test
 	public void TestGetParentThreeLevels()
 	{
-		String expected = TopicContainer.Biology.toString();
+		String expected = TopicContainer.GetTopicContainer(BiologyTopics.class).GetClassName();
 		String results = "";
 
-		results = TopicContainer.ChineseDogs.GetParent(3).toString();
+		results = TopicContainer.GetTopicContainer(BiologyTopics.class).ChineseDogs.GetParent(3).toString();
 
 		Assert.assertEquals(expected, results);
 	}
@@ -81,7 +97,7 @@ public class TopicChooserTester
 	@Test
 	public void TestMoodCalculatorWithNegativeVotes()
 	{
-		VoteCounter voteContainer = new VoteCounter(TopicContainer.Denmark);
+		VoteCounter voteContainer = new VoteCounter(TopicContainer.GetTopicContainer(CountryTopics.class).Denmark);
 
 		voteContainer.AddVote(1);
 		voteContainer.AddVote(1);
@@ -97,7 +113,7 @@ public class TopicChooserTester
 
 		Topic newTopic = voteContainer.GetNextTopic(9);
 
-		String expected = TopicContainer.Denmark.GetParent(2).toString();
+		String expected = TopicContainer.GetTopicContainer(CountryTopics.class).Denmark.GetParent(2).toString();
 		String results = "";
 
 		results = newTopic.toString();
@@ -108,9 +124,9 @@ public class TopicChooserTester
 	@Test
 	public void TestMoodCalculatorWithPositiveVotes()
 	{
-		TopicContainer.Scifi.VisitTopic();
+		TopicContainer.GetTopicContainer(MovieTopics.class).Scifi.VisitTopic();
 
-		VoteCounter voteContainer = new VoteCounter(TopicContainer.Scifi);
+		VoteCounter voteContainer = new VoteCounter(TopicContainer.GetTopicContainer(MovieTopics.class).Scifi);
 
 		voteContainer.AddVote(2);
 		voteContainer.AddVote(2);
@@ -120,9 +136,9 @@ public class TopicChooserTester
 		String results = newTopic.toString();
 
 		boolean isCorrect = false;
-		if (results.equalsIgnoreCase(TopicContainer.StarWars.toString()))
+		if (results.equalsIgnoreCase(TopicContainer.GetTopicContainer(MovieTopics.class).StarWars.toString()))
 			isCorrect = true;
-		if (results.equalsIgnoreCase(TopicContainer.Gravity.toString()))
+		if (results.equalsIgnoreCase(TopicContainer.GetTopicContainer(MovieTopics.class).Gravity.toString()))
 			isCorrect = true;
 
 		Assert.assertTrue(isCorrect);
@@ -131,22 +147,39 @@ public class TopicChooserTester
 	@Test
 	public void TestGetParentRecursionWithOneLevel()
 	{
-		String expected = TopicContainer.ChineseDogs.Parent.toString();
-		String results = TopicContainer.ChineseDogs.GetParent(1).toString();
+		String expected = TopicContainer.GetTopicContainer(BiologyTopics.class).ChineseDogs.Parent.toString();
+		String results = TopicContainer.GetTopicContainer(BiologyTopics.class).ChineseDogs.GetParent(1).toString();
 
 		Assert.assertEquals(expected, results);
 
 	}
-	
+
 	@Test
 	public void TestRandomStartingTopic()
 	{
 		Topic startTopic = TopicContainer.GetStartingTopic();
 		String results = startTopic.toString();
 
-		Assert.assertTrue(TopicContainer.RootTopic.Kids.contains(startTopic));
-		
+		Assert.assertTrue(TopicContainer.SuperRootTopic.Kids.contains(startTopic));
+
 	}
-	
+
+	@Test
+	public void TestGettingTopicContainers()
+	{
+		TopicContainer _topicContainerBase = new TopicContainer();
+
+		_topicContainerBase.AddTopic(new MovieTopics()).AddTopic(new BiologyTopics()).AddTopic(new TechnologyTopics())
+				.AddTopic(new TravellingTopics()).AddTopic(new CountryTopics()).AddTopic(new PoliticsTopics())
+				.AddTopic(new HistoryTopics());
+
+		_topicContainerBase.CreateTopics();
+
+		Topic t = _topicContainerBase.GetTopicContainer(PoliticsTopics.class).Communism;
+
+		Assert.assertNotNull(t);
+	}
+
+	// TODO: test that all topics have been initialized!
 
 }
